@@ -2,7 +2,7 @@
 <br>ReconAi-Frontend
 </h1>
   
-   > Este repositorio contem o o front-end do sistema de recomendação ReconAi.
+   > Este repositorio contem o o front-end do sistema de recomendação ReconAi, desenvolvido utilizando framework HTML+CSS.
    
    <a target="_blank"><img align="left" src="https://skillicons.dev/icons?i=html,css"></a>
 
