@@ -4,7 +4,7 @@
   
    > Este repositorio contem o o front-end do sistema de recomendação ReconAi.
    
-   <a target="_blank"><img align="left" src="https://skillicons.dev/icons?i=react"></a>
+   <a target="_blank"><img align="left" src="https://skillicons.dev/icons?i=html,css"></a>
 
    ##
    
