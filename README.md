@@ -20,7 +20,9 @@
   ## 
 
   <h3 align="center">
-  <br>Protótipo:
+   
+  <br> Protótipo:
+![prototipo-reconai](https://github.com/Ai-Recon/ReconAi-Frontend/assets/80834658/c59f7428-d841-4ed5-9cc7-b836c32a8c4b)
   </h3>
   <br>
   
