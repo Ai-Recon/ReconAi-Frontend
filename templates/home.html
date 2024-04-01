@@ -8,23 +8,155 @@
     <link rel="stylesheet" href="/static/home.css">
 </head>
 
-
-
-
 <body>
     <div class="background">
         <header>
             <img class="img" src="/static/assets/header.png" alt="Imagem do perfil">
         </header>
-        
+
         <div class="rectangle">
             <h1>Categorias</h1>
+
+            <details class="custom-select">
+                <summary class="radios" onclick="toggleDropdown('dropdown1')">Tipo</summary>
+                <ul class="list" id="dropdown1">
+                    <li>
+                        <label for="item1">
+                            Item 1
+                            <span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="item2">Item 2</label>
+                    </li>
+                    <li>
+                        <label for="item3">Item 3</label>
+                    </li>
+                    <li>
+                        <label for="item4">Item 4</label>
+                    </li>
+                    <li>
+                        <label for="item5">Item 5</label>
+                    </li>
+                </ul>
+            </details>
+
+            <details class="custom-select">
+                <summary class="radios" onclick="toggleDropdown('dropdown2')">Cor Principal</summary>
+                <ul class="list" id="dropdown2">
+                    <li>
+                        <label for="item1">
+                            Item 1
+                            <span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="item2">Item 2</label>
+                    </li>
+                    <li>
+                        <label for="item3">Item 3</label>
+                    </li>
+                    <li>
+                        <label for="item4">Item 4</label>
+                    </li>
+                    <li>
+                        <label for="item5">Item 5</label>
+                    </li>
+                </ul>
+            </details>
+
+            <details class="custom-select">
+                <summary class="radios" onclick="toggleDropdown('dropdown3')">Gola</summary>
+                <ul class="list" id="dropdown2">
+                    <li>
+                        <label for="item1">
+                            Item 1
+                            <span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="item2">Item 2</label>
+                    </li>
+                    <li>
+                        <label for="item3">Item 3</label>
+                    </li>
+                    <li>
+                        <label for="item4">Item 4</label>
+                    </li>
+                    <li>
+                        <label for="item5">Item 5</label>
+                    </li>
+                </ul>
+            </details>
+
+            <details class="custom-select">
+                <summary class="radios" onclick="toggleDropdown('dropdown4')">Material</summary>
+                <ul class="list" id="dropdown2">
+                    <li>
+                        <label for="item1">
+                            Item 1
+                            <span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="item2">Item 2</label>
+                    </li>
+                    <li>
+                        <label for="item3">Item 3</label>
+                    </li>
+                    <li>
+                        <label for="item4">Item 4</label>
+                    </li>
+                    <li>
+                        <label for="item5">Item 5</label>
+                    </li>
+                </ul>
+            </details>
+
+            <details class="custom-select">
+                <summary class="radios" onclick="toggleDropdown('dropdown5')">Manga</summary>
+                <ul class="list" id="dropdown2">
+                    <li>
+                        <label for="item1">
+                            Item 1
+                            <span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="item2">Item 2</label>
+                    </li>
+                    <li>
+                        <label for="item3">Item 3</label>
+                    </li>
+                    <li>
+                        <label for="item4">Item 4</label>
+                    </li>
+                    <li>
+                        <label for="item5">Item 5</label>
+                    </li>
+                </ul>
+            </details>
+
+
+
+            <button class="btn">GERAR</button>
+
         </div>
 
         <img class="wave" src="/static/assets/onda.png">
 
     </div>
 
+    <script>
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
