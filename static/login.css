@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+}
+
+.background {
+    width: 100%;
+    height: 100vh; /* Alterado para 100vh */
+    background: linear-gradient(90deg, #1A1965 10%, #5E3DC8 110%);
+    position: relative; /* Alterado para relative */
+    display: flex; /* Adicionado */
+    align-items: center; /* Adicionado */
+    justify-content: center; /* Adicionado */
+}
+
+.img {
+    height: 250px;
+    margin-left: 16px;
+    margin-top: 10px;
+}
+
+.rectangle {
+    background-color: #362890;
+    height: 750px;
+    width: 1000px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white; 
+}
+
+.rectangle h1 {
+    font-family: "Outfit Bold", sans-serif;
+    margin-top: 50px;
+}
+
+.input{
+    margin-top: 5%;
+    width: 600px;
+    background-color: transparent;
+    border-radius: 10px;
+    height: 50px;
+    border: 2px solid #fff;
+    color: white;
+    font-family: "Outfit Bold", sans-serif;
+    font-size: 16px;
+    padding: 10px; /* Adiciona um preenchimento interno para melhorar a aparência */
+
+}
+.input::placeholder {
+    color: #ffffff; 
+    font-family: "Outfit Bold", sans-serif;
+    font-weight: bolder;
+}
+
+.btn{
+    margin-top: 5%;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    vertical-align: middle;
+    font-family: "Outfit Bold", sans-serif;
+    border-width: 0;
+    font-weight: bolder;
+    color: #5E3DC8;
+}

@@ -11,9 +11,150 @@
 
 <body>
     <div class="background">
-        <img src="/assets/header.png" alt="Imagem do perfil">
-        <p>Seja bem-vindo {{nome_usuario}}</p>
+        <header class="header">
+            <img class="img" src="/static/assets/header.png" alt="Imagem do perfil">
+            <h1>Ajuda</h1>
+            <h1>Suporte</h1>
+            <h1>Cadastre-se</h1>
+            <button class="button">
+            <h2>Login</h2>
+            </button>
+        </header>
+
+        <div class="conteudo">
+
+            <div class="rectangle">
+                <h1>Categorias</h1>
+
+                <details class="custom-select">
+                    <summary class="radios" onclick="toggleDropdown('dropdown1')">Estação do ano</summary>
+                    <ul class="list" id="dropdown1">
+                        <li>
+                            <label for="et1">Camiseta</label>
+                        </li>
+                        <li>
+                            <label for="et2">Camisa</label>
+                        </li>
+                        <li>
+                            <label for="et3">Agasalho</label>
+                        </li>
+                        <li>
+                            <label for="et4">Calça</label>
+                        </li>
+                        <li>
+                            <label for="et5">Tênis</label>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="custom-select">
+                    <summary class="radios" onclick="toggleDropdown('dropdown2')">Cor</summary>
+                    <ul class="list" id="dropdown2">
+                        <li>
+                            <label for="item1">Item 1</label>
+                        </li>
+                        <li>
+                            <label for="item2">Item 2</label>
+                        </li>
+                        <li>
+                            <label for="item3">Item 3</label>
+                        </li>
+                        <li>
+                            <label for="item4">Item 4</label>
+                        </li>
+                        <li>
+                            <label for="item5">Item 5</label>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="custom-select">
+                    <summary class="radios" onclick="toggleDropdown('dropdown3')">Est</summary>
+                    <ul class="list" id="dropdown2">
+                        <li>
+                            <label for="item1">
+                                Item 1
+                                <span></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="item2">Item 2</label>
+                        </li>
+                        <li>
+                            <label for="item3">Item 3</label>
+                        </li>
+                        <li>
+                            <label for="item4">Item 4</label>
+                        </li>
+                        <li>
+                            <label for="item5">Item 5</label>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="custom-select">
+                    <summary class="radios" onclick="toggleDropdown('dropdown4')">Marca</summary>
+                    <ul class="list" id="dropdown2">
+                        <li>
+                            <label for="item1">
+                                Item 1
+                                <span></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="item2">Item 2</label>
+                        </li>
+                        <li>
+                            <label for="item3">Item 3</label>
+                        </li>
+                        <li>
+                            <label for="item4">Item 4</label>
+                        </li>
+                        <li>
+                            <label for="item5">Item 5</label>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="custom-select">
+                    <summary class="radios" onclick="toggleDropdown('dropdown5')">Preço</summary>
+                    <ul class="list" id="dropdown2">
+                        <li>
+                            <label for="item1">Item 1 </label>
+                        </li>
+                        <li>
+                            <label for="item2">Item 2</label>
+                        </li>
+                        <li>
+                            <label for="item3">Item 3</label>
+                        </li>
+                        <li>
+                            <label for="item4">Item 4</label>
+                        </li>
+                        <li>
+                            <label for="item5">Item 5</label>
+                        </li>
+                    </ul>
+                </details>
+
+
+
+                <button class="btn">GERAR</button>
+
+            </div>
+
+            <div class="item-show">
+            </div>
+
+        </div>
+
     </div>
+
+    
+
+            <img class="wave" src="/static/assets/onda.png">
+
 </body>
+
 
 </html>

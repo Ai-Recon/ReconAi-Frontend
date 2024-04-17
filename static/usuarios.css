@@ -1,13 +1,257 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;   
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.header h1 {
+    font-family: "Outfit Bold", sans-serif;
+    color: white;
+    font-size: larger;
+    margin-top: 15px;
+}
+.header h2{
+    font-family: "Outfit Bold", sans-serif;
+    color: #5E3DC8;
+    font-size: larger;
+    width: 100px;
+    border-radius: 10px;
+    text-align: center;
+}
+.header button{
+    margin-top: 15px;
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border-radius: 10px;
+    vertical-align: middle;
+    border-width: 0;
+}
+
+.header p{
+    font-family: "Outfit Bold", sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-top: 15px;
+    margin-right: 150px;
+
 }
 
 .background {
     width: 100%;
-    height: 100%;
+    height: 100%; 
+    background: linear-gradient(180deg, #1A1965 10%, #5E3DC8 100%);
     position: absolute;
-    background: linear-gradient(180deg, #1A1965 10%, #5E3DC8 90%);
+    bottom: 0;
+}
+
+.img {
+    height: 75px;
+    margin-top: 10px;
+
+}
+
+.conteudo{
+    flex-direction: row;
+    display: flex;
+    margin-top: 1%;
+}
+
+.rectangle {
+    background-color: #362890;
+    height: 720px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    margin-left: 2.5%;
+    align-items: center;
+    flex-direction: column;
+    color: white; 
+}
+
+.rectangle h1 {
+    font-family: "Outfit Bold", sans-serif;
+    margin-top: 50px;
+}
+
+.item-show{
+    width: 1280px;
+    height: 720px;
+    margin-left: 2.5%;
+    margin-right: 5%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.wave{
+    position: absolute;
+    bottom: 0;
+    height: 6.5%;
+    width: 100%;
+}
+
+/* Inicio Drop down */
+details {
+	position: relative;
+	width: 75%;
+    color: #5E3CC7;
+    margin-top: 12.5%;
+    font-weight: bold;
+    font-family: "Outfit Bold", sans-serif;
+    border-radius: 15px;
+
+}
+
+details[open] {
+	z-index: 1;
+}
+
+summary {
+	padding: 1rem;
+    border-radius: 15px;
+	background-color: #ffffff;
+	list-style: none;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+details[open] summary:before {
+	content: '';
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	background: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+summary:after {
+	content: '';
+	display: inline-block;
+	float: right;
+	width: .5rem;
+	height: .5rem;
+	border-bottom: 1px solid currentColor;
+	border-left: 1px solid currentColor;
+	border-bottom-left-radius: 2px;
+	transform: rotate(45deg) translate(50%, 0%);
+	transform-origin: center center;
+	transition: transform ease-in-out 200ms;
+
+}
+
+summary:focus {
+	outline: none;
+}
+
+details[open] summary:after {
+	transform: rotate(-45deg) translate(0%, 0%);
+}
+
+ul {
+	width: 100%;
+	background: #ffffff;
+	position: absolute;
+	top: calc(100% + .25rem);
+	left: 0;
+	padding: 1rem;
+	margin: 0;
+    border-radius: 20px;
+    align-self: center;
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+li {
+	margin: 0;
+	padding: 1rem 0;
+	border-bottom: 1px solid #ccc;
+}
+
+li:first-child {
+	padding-top: 0;
+}
+
+li:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+/* FAKE SELECT */
+
+summary.radios {
+	counter-reset: radios;
+}
+
+summary.radios:before {
+	content: var(--selection);
+}
+
+input[type=radio] {
+	counter-increment: radios;
+	appearance: none;
+	display: none;
+    color: #5E3CC7;
+    font-weight: bold;
+}
+
+input[type=radio]:checked {
+	display: inline;
+	--display: block;
+}
+
+input[type=radio]:after {
+	content: attr(title);
+	display: inline;
+	font-size: 1rem;
+}
+
+ul.list {
+	counter-reset: labels;
+    list-style-type: none; /* Remove os marcadores padrão */
+
+
+}
+
+label {
+	width: 100%;
+	display: flex;
+	cursor: pointer;
+	justify-content: space-between;
+    color: #5E3CC7;
+    font-weight: bold;
+    font-family: "Outfit Bold", sans-serif;
+}
+
+label span {
+	--display: none;
+	display: var(--display);
+
+}
+
+/*Fim  Drop down */
+
+.btn{
+    width: 75%;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 35px;
+    background-color: transparent;
+    border: 2px solid #fff; /* Adiciona borda ao resumo */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Outfit Bold", sans-serif;
+    font-size: 20px;
 }
 

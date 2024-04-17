@@ -191,7 +191,7 @@ label span {
 .btn{
     width: 75%;
     height: 50px;
-    border-radius: 20px;
+    border-radius: 15px;
     margin-top: 35px;
     background-color: transparent;
     border: 2px solid #fff; /* Adiciona borda ao resumo */
