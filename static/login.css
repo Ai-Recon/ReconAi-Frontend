@@ -15,15 +15,13 @@
 }
 
 .img {
-    height: 250px;
-    margin-left: 16px;
-    margin-top: 10px;
-}
+    height: 40%;
+   }
 
 .rectangle {
     background-color: #362890;
-    height: 750px;
-    width: 1000px;
+    height: 75%;
+    width: 50%;
     border-radius: 30px;
     box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -39,9 +37,9 @@
 
 .input{
     margin-top: 5%;
-    width: 600px;
     background-color: transparent;
     border-radius: 10px;
+    width: 100%;
     height: 50px;
     border: 2px solid #fff;
     color: white;
@@ -54,10 +52,11 @@
     color: #ffffff; 
     font-family: "Outfit Bold", sans-serif;
     font-weight: bolder;
+    align-self: center;
 }
 
 .btn{
-    margin-top: 5%;
+    margin-top: 2.5%;
     width: 200px;
     height: 50px;
     background-color: white;
@@ -68,4 +67,16 @@
     border-width: 0;
     font-weight: bolder;
     color: #5E3DC8;
+}
+.texto-cadastro{
+    font-size: 20px;
+}
+.inputdiv{
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+
 }
