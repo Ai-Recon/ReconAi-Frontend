@@ -61,11 +61,12 @@
     flex-direction: row;
     display: flex;
     margin-top: 1%;
+    height: 80%;
 }
 
 .rectangle {
     background-color: #362890;
-    height: 550px;
+    height: 85%;
     width: 30%;
     border-radius: 30px;
     box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
@@ -83,7 +84,7 @@
 
 .item-show{
     width: 70%;
-    height: 550px;
+    height: 85%;
     margin-left: 2.5%;
     margin-right: 5%;
     background-color: white;
@@ -102,10 +103,10 @@ details {
 	position: relative;
 	width: 75%;
     color: #5E3CC7;
-    margin-top: 5%;
+    margin-top: 10%;
     font-weight: bold;
     font-family: "Outfit Bold", sans-serif;
-    border-radius: 15px;
+    border-radius: 245px;
 
 }
 
@@ -159,17 +160,15 @@ details[open] summary:after {
 }
 
 ul {
-	width: 100%;
-	background: #ffffff;
+    background-color: white;
+    width: 100%;
 	position: absolute;
-	top: calc(100% + .25rem);
+	top: calc(100% + .1rem);
 	left: 0;
 	padding: 1rem;
 	margin: 0;
     border-radius: 20px;
     align-self: center;
-	max-height: 150px;
-	overflow-y: auto;
 }
 
 li {
@@ -244,8 +243,8 @@ label span {
 .btn{
     width: 75%;
     height: 50px;
-    border-radius: 10px;
-    margin-top: 35px;
+    border-radius: 15px;
+    margin-top: 7.5%;
     background-color: transparent;
     border: 2px solid #fff; /* Adiciona borda ao resumo */
     color: white;
