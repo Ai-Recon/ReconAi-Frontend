@@ -21,7 +21,7 @@ def connect_to_database():
         )
 
         if conn:
-            print("Sucesso ao conectar com o banco!")
+            print("Sucesso ao conectar com o banco!", end=" | ")
 
             end_time = time.time()
             execution_time = end_time - start_time
@@ -47,7 +47,7 @@ def fetch_data(sql_query):
             result = cursor.fetchall()
 
             if result:
-                print("Sucesso na busca dos dados!")
+                print("Sucesso na busca dos dados!", end=" | ")
 
                 cursor.close()
                 end_time = time.time()
