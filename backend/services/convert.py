@@ -18,7 +18,3 @@ def convert_data_to_df():
         )
 
     return df
-
-
-if __name__ == "__main__":
-    print(convert_data_to_df())
