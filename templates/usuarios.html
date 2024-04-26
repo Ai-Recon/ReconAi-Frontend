@@ -13,12 +13,8 @@
     <div class="background">
         <header class="header">
             <img class="img" src="/static/assets/header.png" alt="Imagem do perfil">
-            <h1>Ajuda</h1>
-            <h1>Suporte</h1>
-            <h1>Cadastre-se</h1>
-            <button class="button">
-            <h2>Login</h2>
-            </button>
+    
+         
         </header>
 
         <div class="conteudo">
@@ -27,92 +23,44 @@
                 <h1>Categorias</h1>
 
                 <details class="custom-select">
-                    <summary class="radios" onclick="toggleDropdown('dropdown1')">Estação do ano</summary>
-                    <ul class="list" id="dropdown1">
+                    <summary id="dropdownSummary" class="radios" onclick="toggleDropdown('dropdown2')">Cor</summary>
+                    <ul class="list" id="dropdown2">
                         <li>
-                            <label for="est1">Verão</label>
+                            <label for="azul" onclick="changeColor('Azul')">Azul</label>
                         </li>
                         <li>
-                            <label for="est2">Inverno</label>
+                            <label for="amarelo" onclick="changeColor('Amarelo')">Amarelo</label>
                         </li>
                         <li>
-                            <label for="est3">Outono</label>
+                            <label for="vermelho" onclick="changeColor('Vermelho')">Vermelho</label>
                         </li>
                         <li>
-                            <label for="est4">Primavera</label>
+                            <label for="branco" onclick="changeColor('Branco')">Branco</label>
+                        </li>
+                        <li>
+                            <label for="preto" onclick="changeColor('Preto')">Preto</label>
                         </li>
                     </ul>
                 </details>
     
-                <details class="custom-select">
-                    <summary class="radios" onclick="toggleDropdown('dropdown2')">Cor</summary>
-                    <ul class="list" id="dropdown2">
-                        <li>
-                            <label for="azul">Azul</label>
-                        </li>
-                        <li>
-                            <label for="amarela">Amarela</label>
-                        </li>
-                        <li>
-                            <label for="vermelha">Vermelha</label>
-                        </li>
-                        <li>
-                            <label for="branca">Branca</label>
-                        </li>
-                        <li>
-                            <label for="preto">Preta</label>
-                        </li>
-                    </ul>
-                </details>
+                <div class="labels">
+                    <div class="form-group">
+                        <label class="lname" for="preco-minimo">Preço Mínimo:</label>
+                        <input class="label2" type="number" id="preco-minimo" name="preco-minimo" required>
+                    </div>
     
-                <details class="custom-select">
-                    <summary class="radios" onclick="toggleDropdown('dropdown3')">Tamanho</summary>
-                    <ul class="list" id="dropdown3">
-                        <li>
-                            <label for="tam0">PP</label>
-                        </li>
-                        <li>
-                            <label for="tam1">P</label>
-                        </li>
-                        <li>
-                            <label for="tam2">M</label>
-                        </li>
-                        <li>
-                            <label for="tam3">G</label>
-                        </li>
-                        <li>
-                            <label for="tam4">GG</label>
-                        </li>
-                        <li>
-                            <label for="tam5">GGG</label>
-                        </li>
-                    </ul>
-                </details>
+                    <div class="espaco"></div>
+                    
+                    <div class="form-group">
+                      <label class="lname" for="preco-maximo">Preço Máximo:</label>
+                      <input class="label2" type="number" id="preco-maximo" name="preco-maximo" required>
+                    </div>
+                    
+                </div>
+                
+     
 
-                <details class="custom-select">
-                    <summary class="radios" onclick="toggleDropdown('dropdown5')">Preço</summary>
-                    <ul class="list" id="dropdown2">
-                        <li>
-                            <label for="item1">Item 1 </label>
-                        </li>
-                        <li>
-                            <label for="item2">Item 2</label>
-                        </li>
-                        <li>
-                            <label for="item3">Item 3</label>
-                        </li>
-                        <li>
-                            <label for="item4">Item 4</label>
-                        </li>
-                        <li>
-                            <label for="item5">Item 5</label>
-                        </li>
-                    </ul>
-                </details>
-
-
-
-                <button class="btn">GERAR</button>
+                <button class="btn">GERAR NOVAMENTE</button>
 
             </div>
 
@@ -126,6 +74,12 @@
     
 
             <img class="wave" src="/static/assets/onda.png">
+
+            <script>
+                function changeColor(color) {
+                    document.getElementById('dropdownSummary').textContent = "Cor: " + color;
+                }
+            </script>
 
 </body>
 
