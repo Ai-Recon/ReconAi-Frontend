@@ -5,13 +5,12 @@ import psycopg2
 from dotenv import load_dotenv
 
 
-# Conexão com o Postgres
 def connect_to_database():
-    # Carregando as variáveis de ambiente
+    """
+    Conecta com o Postgres
+    """
     load_dotenv()
-
     start_time = time.time()
-
     try:
         conn = psycopg2.connect(
             host=os.getenv("HOST"),
@@ -19,14 +18,11 @@ def connect_to_database():
             user=os.getenv("USER"),
             password=os.getenv("PASSWORD"),
         )
-
         if conn:
             print("Sucesso ao conectar com o banco!", end=" | ")
-
             end_time = time.time()
             execution_time = end_time - start_time
             print(f"Tempo de execução: {execution_time:.4f} segundos")
-
             return conn
 
     except psycopg2.Error as e:
@@ -35,17 +31,16 @@ def connect_to_database():
 
 
 def fetch_data(sql_query):
+    """
+    Buscando dados no Banco
+    """
     conn = connect_to_database()
-
     if conn:
         start_time = time.time()
         try:
             cursor = conn.cursor()
             cursor.execute(sql_query)
-
-            # Recuperando os resultados da consulta
             result = cursor.fetchall()
-
             if result:
                 print("Sucesso na busca dos dados!", end=" | ")
 
@@ -56,7 +51,6 @@ def fetch_data(sql_query):
 
                 # Fechando a conexão
                 conn.close()
-
                 return result
 
         except psycopg2.Error as e:

@@ -4,11 +4,14 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 def recommend_products(price_range, color, similarity_matrix, df):
+    """
+    Lógica da recomendação dos produtos
+    """
     # Filtrando produtos dentro do intervalo de preço e com a cor desejada
     filtered_products = df[
-        (df["Preço"] >= price_range[0])
-        & (df["Preço"] <= price_range[1])
-        & (df["Cor_do_Produto"] == color)
+        (df["price"] >= price_range[0])
+        & (df["price"] <= price_range[1])
+        & (df["color"] == color)
     ]
 
     # Imprimindo o número de produtos filtrados
@@ -28,7 +31,7 @@ def recommend_products(price_range, color, similarity_matrix, df):
     avg_ratings = []
     for idx in indices_in_similarity_matrix:
         avg_similarity_scores.append(similarity_matrix[idx, :].mean())
-        avg_ratings.append(df.iloc[idx]["Classificação"])  # Adicionando a classificação
+        avg_ratings.append(df.iloc[idx]["rating"])  # Adicionando a classificação
 
     # Normalizando as classificações
     rating_scaler = MinMaxScaler()
@@ -50,4 +53,5 @@ def recommend_products(price_range, color, similarity_matrix, df):
     # Extraindo os títulos dos produtos recomendados
     recommended_titles = [df.loc[idx] for idx, _ in recommended_indices]
 
+    # Retorna os produtos recomendados
     return recommended_titles
