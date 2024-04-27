@@ -115,7 +115,6 @@ ul {
     margin: 0;
     border-radius: 10px;
     cursor: pointer;
-    border: 2px solid #5E3DC8; /* Adiciona uma borda ao redor do dropdown */
 }
 
 li {

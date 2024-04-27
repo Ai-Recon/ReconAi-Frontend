@@ -1,20 +1,19 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;   
+    box-sizing: border-box;
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin-left: 2.5%;
 }
 
-
 .background {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     background: linear-gradient(180deg, #1A1965 10%, #5E3DC8 100%);
     position: absolute;
     bottom: 0;
@@ -23,10 +22,9 @@
 .img {
     height: 75px;
     margin-top: 10px;
-
 }
 
-.conteudo{
+.conteudo {
     flex-direction: row;
     display: flex;
     margin-top: 1%;
@@ -43,7 +41,7 @@
     margin-left: 2.5%;
     align-items: center;
     flex-direction: column;
-    color: white; 
+    color: white;
 }
 
 .rectangle h1 {
@@ -51,23 +49,26 @@
     margin-top: 50px;
 }
 
-.item-show{
+.item-show {
     width: 70%;
     height: 85%;
     margin-left: 2.5%;
     margin-right: 5%;
     background-color: white;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.wave{
+.wave {
     position: absolute;
     bottom: 0;
     height: 6.5%;
     width: 100%;
 }
 
-/* Inicio Drop down */
+/* Drop down */
 details {
     position: relative;
     width: 75%;
@@ -127,9 +128,108 @@ details[open] summary:after {
     transform: rotate(-45deg) translate(0%, 0%);
 }
 
-/* Ajuste para a lista de recomendações */
-.item-show ul#recomendacoes {
+ul {
+    background-color: white;
     width: 100%;
+    position: absolute;
+    top: calc(100% + .1rem);
+    left: 0;
+    padding: 1rem;
+    margin: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+li {
+    margin: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+li:first-child {
+    padding-top: 0;
+}
+
+li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Fake select */
+
+summary.radios {
+    counter-reset: radios;
+}
+
+summary.radios:before {
+    content: var(--selection);
+}
+
+input[type=radio] {
+    counter-increment: radios;
+    appearance: none;
+    display: none;
+    color: #5E3CC7;
+    font-weight: bold;
+}
+
+input[type=radio]:checked {
+    display: inline;
+    --display: block;
+}
+
+input[type=radio]:after {
+    content: attr(title);
+    display: inline;
+    font-size: 1rem;
+}
+
+ul.list {
+    counter-reset: labels;
+    list-style-type: none;
+}
+
+.label2 {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.label2 input[type="number"] {
+    width: 60%;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 0px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* UL Recomendações */
+li2 {
+    border: 2px solid #362890;
+    width: 40%;
+    height: 150px;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    margin: 10px;
+}
+
+li.recommendation {
+    width: 30%;
+    height: 15%;
+    list-style: none;
+    display: flex;
+    margin: 10px;
+    border: 2px ridge #362890;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.item-show ul#recomendacoes {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -137,9 +237,8 @@ details[open] summary:after {
 
 .item-show ul#recomendacoes li {
     margin: 0;
-    padding: 1rem 0;
     border-bottom: 1px solid #ccc;
-    color: #000; /* Defina a cor do texto para preto */
+    color: #000;
 }
 
 .item-show ul#recomendacoes li:first-child {
@@ -151,23 +250,19 @@ details[open] summary:after {
     border-bottom: none;
 }
 
-/*Fim  Drop down */
-
-
-.btn{
+.btn {
     width: 75%;
     height: 50px;
     border-radius: 10px;
     margin-top: 15%;
     background-color: transparent;
-    border: 2px solid #fff; /* Adiciona borda ao resumo */
+    border: 2px solid #fff;
     color: white;
     font-weight: bold;
     cursor: pointer;
     font-family: "Outfit Bold", sans-serif;
     font-size: 20px;
 }
-
 
 .labels {
     display: flex;
@@ -176,10 +271,9 @@ details[open] summary:after {
     align-items: center;
     margin-top: 15%;
     width: 75%;
-    
 }
 
-.label2{
+.label2 {
     height: 50px;
     border-radius: 10px;
     border: 0px;
@@ -188,14 +282,13 @@ details[open] summary:after {
     font-weight: bolder;
     padding-left: 5px;
     margin-top: 10px;
-
-
 }
-.espaco{
+
+.espaco {
     width: 15px;
 }
-.lname{
+
+.lname {
     font-family: "Outfit Bold", sans-serif;
     font-weight: bolder;
 }
-

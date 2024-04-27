@@ -17,57 +17,58 @@
 
         <div class="conteudo">
 
-            <div class="rectangle">
-                <h1>Categorias</h1>
+            <form class="rectangle" id="formulario" method="post" onsubmit="gerarRecomendacoes(); return false;">
+                    <h1>Categorias</h1>
 
-                <details class="custom-select">
-                    <summary id="dropdownSummary" class="radios" onclick="toggleDropdown('dropdown2')">Cor</summary>
-                    <ul class="list" id="dropdown2">
-                        <li>
-                            <label for="azul" onclick="changeColor('Azul')">Azul</label>
-                        </li>
-                        <li>
-                            <label for="amarelo" onclick="changeColor('Amarelo')">Amarelo</label>
-                        </li>
-                        <li>
-                            <label for="vermelho" onclick="changeColor('Vermelho')">Vermelho</label>
-                        </li>
-                        <li>
-                            <label for="branco" onclick="changeColor('Branco')">Branco</label>
-                        </li>
-                        <li>
-                            <label for="preto" onclick="changeColor('Preto')">Preto</label>
-                        </li>
-                    </ul>
-                </details>
+                    <details class="custom-select">
+                        <summary id="dropdownSummary" class="radios" onclick="toggleDropdown('dropdown2')">Cor</summary>
+                        <ul class="list" id="dropdown2">
+                            <li>
+                                <label for="navy" onclick="changeColor('navy')">navy</label>
+                            </li>
+                            <li>
+                                <label for="yellow" onclick="changeColor('yellow')">yellow</label>
+                            </li>
+                            <li>
+                                <label for="vermelho" onclick="changeColor('Vermelho')">Vermelho</label>
+                            </li>
+                            <li>
+                                <label for="branco" onclick="changeColor('Branco')">Branco</label>
+                            </li>
+                            <li>
+                                <label for="preto" onclick="changeColor('Preto')">Preto</label>
+                            </li>
+                        </ul>
+                    </details>
 
-                <div class="labels">
-                    <div class="form-group">
-                        <label class="lname" for="preco-minimo">Preço Mínimo:</label>
-                        <input class="label2" type="number" id="preco-minimo" name="preco-minimo" required>
+                    <div class="labels">
+                        <div class="form-group">
+                            <label class="lname" for="preco-minimo">Preço Mínimo:</label>
+                            <input class="label2" type="number" id="preco-minimo" name="preco-minimo" required>
+                        </div>
+
+                        <div class="espaco"></div>
+
+                        <div class="form-group">
+                            <label class="lname" for="preco-maximo">Preço Máximo:</label>
+                            <input class="label2" type="number" id="preco-maximo" name="preco-maximo" required>
+                        </div>
+
                     </div>
 
-                    <div class="espaco"></div>
+                    <button class="btn" type="submit">GERAR NOVAMENTE</button>
+                    <input type="hidden" id="selectedColor" name="color">
 
-                    <div class="form-group">
-                        <label class="lname" for="preco-maximo">Preço Máximo:</label>
-                        <input class="label2" type="number" id="preco-maximo" name="preco-maximo" required>
-                    </div>
-
-                </div>
-
-                <button class="btn" onclick="gerarRecomendacoes()">GERAR NOVAMENTE</button>
-
-            </div>
+            </form>
 
             <div class="item-show">
                 <h2>Recomendações:</h2>
-                <ul id="recomendacoes">
+                <ul2 id="recomendacoes">
                     {% for product in recommendations %}
-                    <li>Cor do produto: {{ product.Cor_do_Produto }}, Título: {{ product.Título }}, Classificação: {{
-                        product.Classificação }}</li>
+                    <li2>Cor do produto: {{ product.Cor_do_Produto }}, Título: {{ product.Título }}, Classificação: {{
+                        product.Classificação }}, Preço: {{product.Preço}}</li2>
                     {% endfor %}
-                </ul>
+                </ul2>
             </div>
 
 
@@ -80,45 +81,44 @@
 
 
     <script>
-        function changeColor(color) {
-            document.getElementById('dropdownSummary').textContent = "Cor: " + color;
-        }
-    </script>
+        function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    dropdown.classList.toggle("show");
+}
 
 
-    <script>
+function changeColor(color) {
+    document.getElementById('dropdownSummary').textContent = "Cor: " + color;
+    document.getElementById('selectedColor').value = color; // Adiciona esta linha
+}
 
         function gerarRecomendacoes() {
-            // Obter valores de preço mínimo e máximo e cor selecionada
-            var precoMinimo = document.getElementById('preco-minimo').value;
-            var precoMaximo = document.getElementById('preco-maximo').value;
-            var cor = document.getElementById('dropdownSummary').textContent.replace('Cor: ', '');
-
-            // Enviar solicitação AJAX para o servidor Flask
+            var formulario = document.getElementById("formulario");
+            var formData = new FormData(formulario);
+    
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/usuarios/{{ nome_usuario }}?price_min=' + precoMinimo + '&price_max=' + precoMaximo + '&color=' + cor, true);
+            xhr.open('POST', '/usuarios', true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Limpar a lista de recomendações existente
-                    var recommendationsList = document.getElementById('recomendacoes');
-                    recommendationsList.innerHTML = '';
-
-                    // Obter a lista de recomendações do servidor
                     var recommendations = JSON.parse(xhr.responseText);
-
-                    // Adicionar cada recomendação como um item da lista
-                    recommendations.forEach(function (recommendation) {
-                        var li = document.createElement('li');
-                        li.textContent = 'Cor do produto: ' + recommendation.Cor_do_Produto + ', Título: ' + recommendation.Título + ', Classificação: ' + recommendation.Classificação;
-                        recommendationsList.appendChild(li);
-                    });
+                    renderizarRecomendacoes(recommendations);
                 }
             };
-            xhr.send();
+    
+            xhr.send(formData);
         }
-
+    
+        function renderizarRecomendacoes(recommendations) {
+            var recommendationsList = document.getElementById('recomendacoes');
+            recommendationsList.innerHTML = '';
+            recommendations.forEach(function (recommendation) {
+                var li = document.createElement('li');
+                li.textContent = 'Cor do produto: ' + recommendation.Cor_do_Produto + ', Título: ' + recommendation.Título + ', Classificação: ' + recommendation.Classificação + ', Preço: ' + recommendation.Preço;
+                recommendationsList.appendChild(li);
+            });
+        }
     </script>
-
+    
 </body>
 
 </html>
