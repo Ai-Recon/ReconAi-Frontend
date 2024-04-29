@@ -1,10 +1,16 @@
-# main.py
 import pandas as pd
-from db.db_functions import fetch_data
-from services.calculate import calculate_cosine_similarity
-from services.convert import convert_data_to_df
-from services.preprocess import preprocess_data
-from services.recommend import recommend_products
+
+from backend.src.db.db_functions import fetch_data
+from backend.src.services.calculate import calculate_cosine_similarity
+from backend.src.services.convert import convert_data_to_df, convert_df_to_json
+from backend.src.services.preprocess import preprocess_data
+from backend.src.services.recommend import recommend_products
+
+# from db.db_functions import fetch_data
+# from services.calculate import calculate_cosine_similarity
+# from services.convert import convert_data_to_df, convert_df_to_json
+# from services.preprocess import preprocess_data
+# from services.recommend import recommend_products
 
 
 def create_df():
@@ -56,7 +62,7 @@ def show_recommendations(df, price_range, color):
     print(df)
 
 
-def main():
+def get_recommendations():
     # Criação do DataFrame a partir dos dados do banco - dados pré-processados
     df = create_df()
 
@@ -69,8 +75,8 @@ def main():
     )
 
     # Exibe as recomendações
-    show_recommendations(df_recommendations, options["price_range"], options["color"])
+    # show_recommendations(df_recommendations, options["price_range"], options["color"])
 
+    json_recommendations = convert_df_to_json(df_recommendations)
 
-if __name__ == "__main__":
-    main()
+    return json_recommendations
