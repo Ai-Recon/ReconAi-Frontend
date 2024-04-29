@@ -61,15 +61,18 @@
 
             </form>
 
-            <div class="item-show">
-                <h2>Recomendações:</h2>
+            <div class="item-show" id="recommendations-container"> 
                 <ul2 id="recomendacoes">
                     {% for product in recommendations %}
-                    <li2>Cor do produto: {{ product.Cor_do_Produto }}, Título: {{ product.Título }}, Classificação: {{
-                        product.Classificação }}, Preço: {{product.Preço}}</li2>
+                    <li2>
+                        <span class="title">Cor do produto:</span> {{ product.Cor_do_Produto }}, 
+                        <span class="title">Título:</span> {{ product.Título }},
+                        <span class="title">Classificação:</span> {{ product.Classificação }},
+                        <span class="title">Preço:</span> {{product.Preço}}</li2>
                     {% endfor %}
                 </ul2>
             </div>
+            
 
 
         </div>
@@ -112,9 +115,9 @@ function changeColor(color) {
             var recommendationsList = document.getElementById('recomendacoes');
             recommendationsList.innerHTML = '';
             recommendations.forEach(function (recommendation) {
-                var li = document.createElement('li');
-                li.textContent = 'Cor do produto: ' + recommendation.Cor_do_Produto + ', Título: ' + recommendation.Título + ', Classificação: ' + recommendation.Classificação + ', Preço: ' + recommendation.Preço;
-                recommendationsList.appendChild(li);
+                var li2 = document.createElement('li2');
+                li2.textContent = 'Cor do produto: ' + recommendation.Cor_do_Produto + ', Título: ' + recommendation.Título + ', Classificação: ' + recommendation.Classificação + ', Preço: ' + recommendation.Preço;
+                recommendationsList.appendChild(li2);
             });
         }
     </script>

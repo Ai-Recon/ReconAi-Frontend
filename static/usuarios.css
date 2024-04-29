@@ -50,6 +50,7 @@
 }
 
 .item-show {
+    padding: 20px;
     width: 70%;
     height: 85%;
     margin-left: 2.5%;
@@ -59,7 +60,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto; /* Adiciona esta linha */
+    max-height: 70vh; /* Adicione uma altura máxima conforme necessário */
 }
+
 
 .wave {
     position: absolute;
@@ -208,30 +212,61 @@ ul.list {
 }
 
 /* UL Recomendações */
-li2 {
-    border: 2px solid #362890;
-    width: 40%;
-    height: 150px;
+#recomendacoes {
     display: flex;
-    border-radius: 10px;
-    align-items: center;
-    margin: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+    margin: auto;
+    list-style: none;
 }
+
+#recomendacoes li2 {
+    list-style-type: none;
+    margin-top: 10px;
+    width: calc(25% - 20px); /* 4 items per row */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    font-family: "Outfit Bold", sans-serif;
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Adjust width and margin for 3 items per row */
+@media (min-width: 768px) {
+    #recomendacoes li2 {
+        width: calc(33.33% - 20px); /* 3 items per row */
+    }
+}
+
+
+#recomendacoes li2:hover {
+    background-color: #e0e0e0; 
+    cursor: pointer; 
+}
+
+
+
+/* Adicione mais estilos conforme necessário */
+
 
 li.recommendation {
     width: 30%;
     height: 15%;
     list-style: none;
     display: flex;
-    margin: 10px;
+    margin: 15px;
     border: 2px ridge #362890;
     border-radius: 10px;
     align-items: center;
 }
 
 .item-show ul#recomendacoes {
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px;
     list-style: none;
 }
 
