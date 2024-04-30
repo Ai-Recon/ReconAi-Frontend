@@ -32,7 +32,7 @@ def usuarios():
         print(
             "DADOS DO BANCO EM JSON = ", recommendations
         )  # printando as recomendações do back
-        return render_template("usuarios.html")
+        return recommendations
 
     else:
         # Se for uma solicitação GET, retorne a página HTML

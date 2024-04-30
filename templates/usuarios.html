@@ -116,7 +116,7 @@ function changeColor(color) {
             recommendationsList.innerHTML = '';
             recommendations.forEach(function (recommendation) {
                 var li2 = document.createElement('li2');
-                li2.textContent = 'Cor do produto: ' + recommendation.Cor_do_Produto + ', Título: ' + recommendation.Título + ', Classificação: ' + recommendation.Classificação + ', Preço: ' + recommendation.Preço;
+                li2.textContent = 'Cor do produto: ' + recommendation["color"] + ', Título: ' + recommendation["title"] + ', Classificação: ' + recommendation["rating"] + ', Preço: ' + recommendation["price"];
                 recommendationsList.appendChild(li2);
             });
         }

@@ -74,6 +74,8 @@ def get_recommendations():
         df, options["price_range"], options["color"]
     )
 
+    df_recommendations.drop(columns=["normalized_price", "numeric_color"], inplace=True)
+
     # Exibe as recomendações
     # show_recommendations(df_recommendations, options["price_range"], options["color"])
 
