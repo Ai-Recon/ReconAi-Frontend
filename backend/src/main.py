@@ -28,8 +28,8 @@ def get_options():
     """
     Retorna as opções para o algoritmo de recomendação.
     """
-    price_range = (10, 17)
-    color = "navy"
+    price_range = (14, 16)
+    color = "black"
     return {"price_range": price_range, "color": color}
 
 
@@ -62,12 +62,12 @@ def show_recommendations(df, price_range, color):
     print(df)
 
 
-def get_recommendations():
+def get_recommendations(options):
     # Criação do DataFrame a partir dos dados do banco - dados pré-processados
     df = create_df()
 
     # Pegando as informações necessárias para o algorítimo de recomendação
-    options = get_options()
+    # options = get_options()
 
     # Criando o DataFrame das recomendações do sistema
     df_recommendations = recomend_algorithm(

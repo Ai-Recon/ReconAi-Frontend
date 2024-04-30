@@ -26,12 +26,15 @@ def usuarios():
         price_max = float(request.form.get("preco-maximo", 1000))
         color = request.form.get("color")
 
-        # RECOMENDAÇÕES SEM AS OPÇÕES(PREÇO E COR) DO FRONT, USANDO AS DO BACK
-        recommendations = get_recommendations()
-        # DESCOBRIR COMO PEGAR AS OPÇÕES DO FRONT PARA USAR NO BACK
-        print(
-            "DADOS DO BANCO EM JSON = ", recommendations
-        )  # printando as recomendações do back
+        # Agora você tem acesso ao preço mínimo, preço máximo e cor selecionada pelo usuário
+        print("Preço Mínimo:", price_min)
+        print("Preço Máximo:", price_max)
+        print("Cor Selecionada:", color)
+
+        options = {"price_range": (price_min, price_max), "color": color}
+
+        recommendations = get_recommendations(options)
+
         return recommendations
 
     else:

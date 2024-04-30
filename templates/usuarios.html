@@ -1,127 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Perfil do usuário</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/static/usuarios.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Perfil do usuário</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/usuarios.css">
+	<body>
+		<div class="background">
+			<header class="header">
+				<img
+					class="img"
+					src="/static/assets/header.png"
+					alt="Imagem do perfil"
+				/>
+			</header>
 
-</head>
+			<div class="conteudo">
+				<form
+					class="rectangle"
+					id="formulario"
+					method="post"
+					onsubmit="gerarRecomendacoes(); return false;"
+				>
+					<h1>Categorias</h1>
 
-<body>
-    <div class="background">
-        <header class="header">
-            <img class="img" src="/static/assets/header.png" alt="Imagem do perfil">
-        </header>
+					<details class="custom-select">
+						<summary
+							id="dropdownSummary"
+							class="radios"
+							onclick="toggleDropdown('dropdown2')"
+						>
+							Cores
+						</summary>
+						<ul class="list" id="dropdown2">
+							<li onclick="changeColor('Azul Marinho')">Azul Marinho</li>
+							<li onclick="changeColor('Amarelo')">Amarelo</li>
+							<li onclick="changeColor('Vermelho')">Vermelho</li>
+							<li onclick="changeColor('Branco')">Branco</li>
+							<li onclick="changeColor('Preto')">Preto</li>
+						</ul>
+					</details>
 
-        <div class="conteudo">
+					<div class="labels">
+						<div class="form-group">
+							<label class="lname" for="preco-minimo">Preço Mínimo:</label>
+							<input
+								class="label2"
+								type="number"
+								id="preco-minimo"
+								name="preco-minimo"
+								required
+							/>
+						</div>
 
-            <form class="rectangle" id="formulario" method="post" onsubmit="gerarRecomendacoes(); return false;">
-                    <h1>Categorias</h1>
+						<div class="espaco"></div>
 
-                    <details class="custom-select">
-                        <summary id="dropdownSummary" class="radios" onclick="toggleDropdown('dropdown2')">Cores</summary>
-                        <ul class="list" id="dropdown2">
-                            <li 
-                                onclick="changeColor('navy')">Azul Marinho
-                            </li>
-                            <li 
-                                onclick="changeColor('yellow')">Amarelo
-                            </li>
-                            <li 
-                                onclick="changeColor('Vermelho')">Vermelho
-                            </li>
-                            <li 
-                                onclick="changeColor('Branco')">Branco
-                            </li>
-                            <li 
-                                onclick="changeColor('Preto')">Preto
-                            </li>
-                        </ul>
-                    </details>
+						<div class="form-group">
+							<label class="lname" for="preco-maximo">Preço Máximo:</label>
+							<input
+								class="label2"
+								type="number"
+								id="preco-maximo"
+								name="preco-maximo"
+								required
+							/>
+						</div>
+					</div>
 
-                    <div class="labels">
-                        <div class="form-group">
-                            <label class="lname" for="preco-minimo">Preço Mínimo:</label>
-                            <input class="label2" type="number" id="preco-minimo" name="preco-minimo" required>
-                        </div>
+					<button class="btn" type="submit">GERAR NOVAMENTE</button>
+					<input type="hidden" id="selectedColor" name="color" />
+				</form>
 
-                        <div class="espaco"></div>
+				<div class="item-show" id="recommendations-container">
+					<ul2 id="recomendacoes">
+						{% for product in recommendations %}
+						<li2>
+							<span class="title">Cor do produto:</span> {{
+							product.Cor_do_Produto }}, <span class="title">Título:</span> {{
+							product.Título }}, <span class="title">Classificação:</span> {{
+							product.Classificação }},
+							<span class="title">Preço:</span> {{product.Preço}}</li2
+						>
+						{% endfor %}
+					</ul2>
+				</div>
+			</div>
+		</div>
 
-                        <div class="form-group">
-                            <label class="lname" for="preco-maximo">Preço Máximo:</label>
-                            <input class="label2" type="number" id="preco-maximo" name="preco-maximo" required>
-                        </div>
+		<img class="wave" src="/static/assets/onda.png" />
 
-                    </div>
+		<script>
+			function toggleDropdown(id) {
+				var dropdown = document.getElementById(id);
+				dropdown.classList.toggle("show");
+			}
 
-                    <button class="btn" type="submit">GERAR NOVAMENTE</button>
-                    <input type="hidden" id="selectedColor" name="color">
+			function changeColor(color) {
+				// Mapear as cores do português para o inglês
+				var colorMap = {
+					"Azul Marinho": "navy",
+					"Amarelo": "yellow",
+					"Vermelho": "red",
+					"Branco": "white",
+					"Preto": "black",
+				};
+				// Verificar se a cor está mapeada
+				if (colorMap[color]) {
+					// Se estiver, definir a cor no dropdownSummary e no selectedColor
+					document.getElementById("dropdownSummary").textContent =
+						"Cor: " + color;
+					document.getElementById("selectedColor").value = colorMap[color];
+				} else {
+					// Caso contrário, manter a cor original
+					document.getElementById("dropdownSummary").textContent =
+						"Cor: " + color;
+					document.getElementById("selectedColor").value = color;
+				}
+			}
 
-            </form>
+			function gerarRecomendacoes() {
+				var formulario = document.getElementById("formulario");
+				var formData = new FormData(formulario);
 
-            <div class="item-show" id="recommendations-container"> 
-                <ul2 id="recomendacoes">
-                    {% for product in recommendations %}
-                    <li2>
-                        <span class="title">Cor do produto:</span> {{ product.Cor_do_Produto }}, 
-                        <span class="title">Título:</span> {{ product.Título }},
-                        <span class="title">Classificação:</span> {{ product.Classificação }},
-                        <span class="title">Preço:</span> {{product.Preço}}</li2>
-                    {% endfor %}
-                </ul2>
-            </div>
-            
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "/usuarios", true);
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						var recommendations = JSON.parse(xhr.responseText);
+						renderizarRecomendacoes(recommendations);
+					}
+				};
 
+				xhr.send(formData);
+			}
 
-        </div>
-
-    </div>
-
-
-    <img class="wave" src="/static/assets/onda.png">
-
-
-    <script>
-        function toggleDropdown(id) {
-    var dropdown = document.getElementById(id);
-    dropdown.classList.toggle("show");
-}
-
-
-function changeColor(color) {
-    document.getElementById('dropdownSummary').textContent = "Cor: " + color;
-    document.getElementById('selectedColor').value = color; // Adiciona esta linha
-}
-
-        function gerarRecomendacoes() {
-            var formulario = document.getElementById("formulario");
-            var formData = new FormData(formulario);
-    
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/usuarios', true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var recommendations = JSON.parse(xhr.responseText);
-                    renderizarRecomendacoes(recommendations);
-                }
-            };
-    
-            xhr.send(formData);
-        }
-    
-        function renderizarRecomendacoes(recommendations) {
-            var recommendationsList = document.getElementById('recomendacoes');
-            recommendationsList.innerHTML = '';
-            recommendations.forEach(function (recommendation) {
-                var li2 = document.createElement('li2');
-                li2.textContent = 'Cor do produto: ' + recommendation["color"] + ', Título: ' + recommendation["title"] + ', Classificação: ' + recommendation["rating"] + ', Preço: ' + recommendation["price"];
-                recommendationsList.appendChild(li2);
-            });
-        }
-    </script>
-    
-</body>
-
+			function renderizarRecomendacoes(recommendations) {
+				var recommendationsList = document.getElementById("recomendacoes");
+				recommendationsList.innerHTML = "";
+				recommendations.forEach(function (recommendation) {
+					var li2 = document.createElement("li2");
+					li2.textContent =
+						"Cor do produto: " +
+						recommendation["color"] +
+						", Título: " +
+						recommendation["title"] +
+						", Classificação: " +
+						recommendation["rating"] +
+						", Preço: " +
+						recommendation["price"];
+					recommendationsList.appendChild(li2);
+				});
+			}
+		</script>
+	</body>
 </html>
