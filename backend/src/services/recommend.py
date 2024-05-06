@@ -19,7 +19,8 @@ def recommend_products(price_range, color, similarity_matrix, df):
 
     # Se não houver produtos que correspondam aos critérios, retornar uma mensagem
     if filtered_products.empty:
-        return "Não há produtos disponíveis com os critérios selecionados."
+        print("Não há produtos disponíveis com os critérios selecionados.")
+        return False
 
     # Convertendo os índices dos produtos filtrados para os índices corretos na matriz de similaridade
     indices_in_similarity_matrix = [

@@ -6,7 +6,7 @@ from backend.src.main import get_recommendations
 app = Flask(__name__, static_folder="static")
 
 # Carregar os dados pré-processados e calculados de main.py
-df_recomendacoes = pd.read_csv("backend\\src\\db\\database\\produtos.csv")
+# df_recomendacoes = pd.read_csv("backend\\src\\db\\database\\produtos.csv")
 
 
 # Defina uma rota para processar a solicitação dos usuários e exibir as recomendações
@@ -34,6 +34,9 @@ def usuarios():
         options = {"price_range": (price_min, price_max), "color": color}
 
         recommendations = get_recommendations(options)
+
+        if not recommendations:
+            return render_template("usuarios.html")
 
         return recommendations
 
