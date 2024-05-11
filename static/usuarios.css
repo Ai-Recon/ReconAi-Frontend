@@ -1,329 +1,324 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-left: 2.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 2.5%;
 }
 
 .background {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #1A1965 10%, #5E3DC8 100%);
-    position: absolute;
-    bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #1a1965 10%, #5e3dc8 100%);
+  position: absolute;
+  bottom: 0;
 }
 
 .img {
-    height: 75px;
-    margin-top: 10px;
+  height: 75px;
+  margin-top: 10px;
 }
 
 .conteudo {
-    flex-direction: row;
-    display: flex;
-    margin-top: 1%;
-    height: 80%;
+  flex-direction: row;
+  display: flex;
+  margin-top: 1%;
+  height: 80%;
 }
 
 .rectangle {
-    background-color: #362890;
-    height: 85%;
-    width: 30%;
-    border-radius: 30px;
-    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
-    display: flex;
-    margin-left: 2.5%;
-    align-items: center;
-    flex-direction: column;
-    color: white;
+  background-color: #362890;
+  height: 85%;
+  width: 30%;
+  border-radius: 30px;
+  box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  margin-left: 2.5%;
+  align-items: center;
+  flex-direction: column;
+  color: white;
 }
 
 .rectangle h1 {
-    font-family: "Outfit Bold", sans-serif;
-    margin-top: 50px;
+  font-family: "Outfit Bold", sans-serif;
+  margin-top: 50px;
 }
 
 .item-show {
-    padding: 20px;
-    width: 70%;
-    height: 85%;
-    margin-left: 2.5%;
-    margin-right: 5%;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto; /* Adiciona esta linha */
-    max-height: 70vh; /* Adicione uma altura máxima conforme necessário */
+  padding: 20px;
+  width: 70%;
+  height: 85%;
+  margin-left: 2.5%;
+  margin-right: 5%;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; /* Adiciona esta linha */
+  max-height: 70vh; /* Adicione uma altura máxima conforme necessário */
 }
 
-
 .wave {
-    position: absolute;
-    bottom: 0;
-    height: 6.5%;
-    width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 6.5%;
+  width: 100%;
 }
 
 /* Drop down */
 details {
-    position: relative;
-    width: 75%;
-    color: #5E3CC7;
-    margin-top: 10%;
-    font-weight: bold;
-    font-family: "Outfit Bold", sans-serif;
-    border-radius: 10px;
-    cursor: pointer;
+  position: relative;
+  width: 75%;
+  color: #5e3cc7;
+  margin-top: 10%;
+  font-weight: bold;
+  font-family: "Outfit Bold", sans-serif;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 details[open] {
-    z-index: 1;
+  z-index: 1;
 }
 
 summary {
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: #ffffff;
-    list-style: none;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #ffffff;
+  list-style: none;
 }
 
 summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 details[open] summary:before {
-    content: '';
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
+  content: "";
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 summary:after {
-    content: '';
-    display: inline-block;
-    float: right;
-    width: .5rem;
-    height: .5rem;
-    border-bottom: 1px solid currentColor;
-    border-left: 1px solid currentColor;
-    border-bottom-left-radius: 2px;
-    transform: rotate(45deg) translate(50%, 0%);
-    transform-origin: center center;
-    transition: transform ease-in-out 200ms;
+  content: "";
+  display: inline-block;
+  float: right;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-bottom: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  border-bottom-left-radius: 2px;
+  transform: rotate(45deg) translate(50%, 0%);
+  transform-origin: center center;
+  transition: transform ease-in-out 200ms;
 }
 
 summary:focus {
-    outline: none;
+  outline: none;
 }
 
 details[open] summary:after {
-    transform: rotate(-45deg) translate(0%, 0%);
+  transform: rotate(-45deg) translate(0%, 0%);
 }
 
 ul {
-    background-color: white;
-    width: 100%;
-    position: absolute;
-    top: calc(100% + .1rem);
-    left: 0;
-    padding: 1rem;
-    margin: 0;
-    border-radius: 10px;
-    cursor: pointer;
+  background-color: white;
+  width: 100%;
+  position: absolute;
+  top: calc(100% + 0.1rem);
+  left: 0;
+  padding: 1rem;
+  margin: 0;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 li {
-    margin: 0;
-    padding: 1rem 0;
-    border-bottom: 1px solid #ccc;
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
 }
 
 li:first-child {
-    padding-top: 0;
+  padding-top: 0;
 }
 
 li:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 /* Fake select */
 
 summary.radios {
-    counter-reset: radios;
+  counter-reset: radios;
 }
 
 summary.radios:before {
-    content: var(--selection);
+  content: var(--selection);
 }
 
-input[type=radio] {
-    counter-increment: radios;
-    appearance: none;
-    display: none;
-    color: #5E3CC7;
-    font-weight: bold;
+input[type="radio"] {
+  counter-increment: radios;
+  appearance: none;
+  display: none;
+  color: #5e3cc7;
+  font-weight: bold;
 }
 
-input[type=radio]:checked {
-    display: inline;
-    --display: block;
+input[type="radio"]:checked {
+  display: inline;
+  --display: block;
 }
 
-input[type=radio]:after {
-    content: attr(title);
-    display: inline;
-    font-size: 1rem;
+input[type="radio"]:after {
+  content: attr(title);
+  display: inline;
+  font-size: 1rem;
 }
 
 ul.list {
-    counter-reset: labels;
-    list-style-type: none;
+  counter-reset: labels;
+  list-style-type: none;
 }
 
 .label2 {
-    display: flex;
-    flex-direction: row;
-    color: white;
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .label2 input[type="number"] {
-    width: 60%;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 0px solid #ccc;
-    box-sizing: border-box;
+  width: 60%;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 0px solid #ccc;
+  box-sizing: border-box;
 }
 
 /* UL Recomendações */
 #recomendacoes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0;
-    margin: auto;
-    list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: auto;
+  list-style: none;
 }
 
 #recomendacoes li2 {
-    list-style-type: none;
-    margin-top: 10px;
-    width: calc(25% - 20px); /* 4 items per row */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    font-size: 16px;
-    font-family: "Outfit Bold", sans-serif;
-    display: block;
-    padding: 10px;
-    box-sizing: border-box;
+  list-style-type: none;
+  margin-top: 10px;
+  width: calc(25% - 20px); /* 4 items per row */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  font-family: "Outfit Bold", sans-serif;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 /* Adjust width and margin for 3 items per row */
 @media (min-width: 768px) {
-    #recomendacoes li2 {
-        width: calc(33.33% - 20px); /* 3 items per row */
-    }
+  #recomendacoes li2 {
+    width: calc(33.33% - 20px); /* 3 items per row */
+  }
 }
-
 
 #recomendacoes li2:hover {
-    background-color: #e0e0e0; 
-    cursor: pointer; 
+  background-color: #e0e0e0;
+  cursor: pointer;
 }
-
-
 
 /* Adicione mais estilos conforme necessário */
 
-
 li.recommendation {
-    width: 30%;
-    height: 15%;
-    list-style: none;
-    display: flex;
-    margin: 15px;
-    border: 2px ridge #362890;
-    border-radius: 10px;
-    align-items: center;
+  width: 30%;
+  height: 15%;
+  list-style: none;
+  display: flex;
+  margin: 15px;
+  border: 2px ridge #362890;
+  border-radius: 10px;
+  align-items: center;
 }
 
 .item-show ul#recomendacoes {
-    padding: 10px;
-    margin: 10px;
-    list-style: none;
+  padding: 10px;
+  margin: 10px;
+  list-style: none;
 }
 
 .item-show ul#recomendacoes li {
-    margin: 0;
-    border-bottom: 1px solid #ccc;
-    color: #000;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+  color: #000;
 }
 
 .item-show ul#recomendacoes li:first-child {
-    padding-top: 0;
+  padding-top: 0;
 }
 
 .item-show ul#recomendacoes li:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .btn {
-    width: 75%;
-    height: 50px;
-    border-radius: 10px;
-    margin-top: 15%;
-    background-color: transparent;
-    border: 2px solid #fff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: "Outfit Bold", sans-serif;
-    font-size: 20px;
+  width: 75%;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 15%;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Outfit Bold", sans-serif;
+  font-size: 20px;
 }
 
 .labels {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15%;
-    width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
+  width: 75%;
 }
 
 .label2 {
-    height: 50px;
-    border-radius: 10px;
-    border: 0px;
-    color: #1A1965;
-    font-family: "Outfit Bold", sans-serif;
-    font-weight: bolder;
-    padding-left: 5px;
-    margin-top: 10px;
+  height: 50px;
+  border-radius: 10px;
+  border: 0px;
+  color: #1a1965;
+  font-family: "Outfit Bold", sans-serif;
+  font-weight: bolder;
+  padding-left: 5px;
+  margin-top: 10px;
 }
 
 .espaco {
-    width: 15px;
+  width: 15px;
 }
 
 .lname {
-    font-family: "Outfit Bold", sans-serif;
-    font-weight: bolder;
+  font-family: "Outfit Bold", sans-serif;
+  font-weight: bolder;
 }
