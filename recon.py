@@ -1,13 +1,16 @@
 import pandas as pd
-from flask import Flask, jsonify, render_template, request, session, redirect, flash
+from flask import Flask, flash, jsonify, redirect, render_template, request, session
 
-from backend.src.main import get_recommendations
+# carrega com os dados do csv
+from backend.src.main_csv import get_recommendations
 
+# carrega com os dados do banco
+# from backend.src.main_db import get_recommendations
 
 
 app = Flask(__name__, static_folder="static")
 
-app.secret_key = 'PUC'
+app.secret_key = "PUC"
 
 # Carregar os dados pré-processados e calculados de main.py
 # df_recomendacoes = pd.read_csv("backend\\src\\db\\database\\produtos.csv")
@@ -48,19 +51,27 @@ def usuarios():
         # Se for uma solicitação GET, retorne a página HTML
         return render_template("usuarios.html")
 
-@app.route('/autenticar', methods=['POST',])
-def autenticar():
-    if 'PUC' == request.form['senha']:
-        session['usuario_logado'] = request.form['usuario']
-        flash(session['usuario_logado'] + ' logado com sucesso!')
-        return redirect('/')
-    else:
-        flash('Usuário não logado')
-        return redirect('/login')
 
-@app.route('/login')
+@app.route(
+    "/autenticar",
+    methods=[
+        "POST",
+    ],
+)
+def autenticar():
+    if "PUC" == request.form["senha"]:
+        session["usuario_logado"] = request.form["usuario"]
+        flash(session["usuario_logado"] + " logado com sucesso!")
+        return redirect("/")
+    else:
+        flash("Usuário não logado")
+        return redirect("/login")
+
+
+@app.route("/login")
 def login():
-    return render_template('login.html')
+    return render_template("login.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
