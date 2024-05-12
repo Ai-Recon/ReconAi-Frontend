@@ -41,8 +41,9 @@ def recomend_algorithm(df, price_range, color):
     cosine_sim = calculate_cosine_similarity(df)
     recommendations = recommend_products(price_range, color, cosine_sim, df)
 
+    # retornar um DataFrame vazio caso não haja recomendações
     if not recommendations:
-        return
+        return pd.DataFrame()
 
     df_recommendations = pd.DataFrame(columns=df.columns)
     dfs_recommendations_list = []
