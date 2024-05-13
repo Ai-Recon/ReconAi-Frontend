@@ -24,6 +24,12 @@
   margin-top: 10px;
 }
 
+.roupa {
+  height: 250px;
+  width: auto;
+  align-self: center;
+}
+
 .conteudo {
   flex-direction: row;
   display: flex;
@@ -33,7 +39,7 @@
 
 .rectangle {
   background-color: #362890;
-  height: 85%;
+  height: 90%;
   width: 30%;
   border-radius: 30px;
   box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
@@ -52,7 +58,7 @@
 .item-show {
   padding: 20px;
   width: 70%;
-  height: 85%;
+  height: 90%;
   margin-left: 2.5%;
   margin-right: 5%;
   background-color: white;
@@ -221,29 +227,31 @@ ul.list {
 }
 
 #recomendacoes li2 {
-  list-style-type: none;
   margin-top: 10px;
-  width: calc(25% - 20px); /* 4 items per row */
   border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  font-size: 16px;
+  border-radius: 10px;
+  background-color: white;
   font-family: "Outfit Bold", sans-serif;
-  display: block;
   padding: 10px;
-  box-sizing: border-box;
 }
 
 /* Adjust width and margin for 3 items per row */
 @media (min-width: 768px) {
   #recomendacoes li2 {
     width: calc(33.33% - 20px); /* 3 items per row */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
 #recomendacoes li2:hover {
-  background-color: #e0e0e0;
+  background-color: #ffffff;
   cursor: pointer;
+}
+
+.titulo {
+  text-align: center;
 }
 
 /* Adicione mais estilos conforme necessário */

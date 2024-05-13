@@ -52,25 +52,25 @@ def usuarios():
         return render_template("usuarios.html")
 
 
-@app.route(
-    "/autenticar",
-    methods=[
-        "POST",
-    ],
-)
-def autenticar():
-    if "PUC" == request.form["senha"]:
-        session["usuario_logado"] = request.form["usuario"]
-        flash(session["usuario_logado"] + " logado com sucesso!")
-        return redirect("/")
-    else:
-        flash("Usuário não logado")
-        return redirect("/login")
+# @app.route(
+#     "/autenticar",
+#     methods=[
+#         "POST",
+#     ],
+# )
+# def autenticar():
+#     if "PUC" == request.form["senha"]:
+#         session["usuario_logado"] = request.form["usuario"]
+#         flash(session["usuario_logado"] + " logado com sucesso!")
+#         return redirect("/")
+#     else:
+#         flash("Usuário não logado")
+#         return redirect("/login")
 
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
+# @app.route("/login")
+# def login():
+#     return render_template("login.html")
 
 
 if __name__ == "__main__":
