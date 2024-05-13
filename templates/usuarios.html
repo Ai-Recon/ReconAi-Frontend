@@ -100,6 +100,9 @@
             </li2>
             {% endfor %}
           </ul2>
+          <li>
+            
+          </li> 
         </div>
       </div>
     </div>
@@ -201,6 +204,11 @@
           var precoSpan = document.createElement("span");
           precoSpan.innerHTML = "<b>Preço:</b> " + recommendation["price"];
           li2.appendChild(precoSpan);
+
+        var imagemProd = document.createElement("img");
+        imagemProd.src = recommendation["D:\_organizar\ReconIa\ReconAi-Frontend\static\img\camiseta.png"];
+        li2.appendChild(imagemProd);
+
 
           recommendationsList.appendChild(li2);
         });
