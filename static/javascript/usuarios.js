@@ -89,7 +89,8 @@ function renderizarRecomendacoes(recommendations) {
 
 		arrayTipoRoupa.forEach((tipo) => {
 			if (titulo.includes(tipo) || titulo.includes(tipo + "s")) {
-				imagemProd.src = `/static/assets/clothes/${tipo}-${recommendation["color"]}.png`;
+				imagemProd.src = `/static/assets/clothes/${tipo}-${recommendation["color"]}.jpg`;
+				console.log(imagemProd.src);
 			}
 		});
 
