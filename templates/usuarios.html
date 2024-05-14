@@ -1,64 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Perfil do usuário</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/static/css/usuarios.css" />
+		<script src="/static/javascript/usuarios.js"></script>
+	</head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Perfil do usuário</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/static/css/usuarios.css" />
-  <script src="/static/javascript/usuarios.js"></script>
-</head>
+	<body>
+		<div class="background">
+			<header class="header">
+				<img
+					class="img"
+					src="/static/assets/header.png"
+					alt="Imagem do perfil"
+				/>
+			</header>
 
-<body>
-  <div class="background">
+			<div class="conteudo">
+				<form
+					class="rectangle"
+					id="formulario"
+					method="post"
+					onsubmit="validarFormulario(); return false;"
+				>
+					<h1>Categorias</h1>
+					<details class="custom-select">
+						<summary
+							id="dropdownSummary"
+							class="radios"
+							onclick="toggleDropdown('dropdown2')"
+						>
+							Cores
+						</summary>
 
-    <header class="header">
-      <img class="img" src="/static/assets/header.png" alt="Imagem do perfil" />
-    </header>
+						<ul class="list" id="dropdown2">
+							<li onclick="changeColor('Azul Marinho')">Azul Marinho</li>
+							<li onclick="changeColor('Amarelo')">Amarelo</li>
+							<li onclick="changeColor('Vermelho')">Vermelho</li>
+							<li onclick="changeColor('Branco')">Branco</li>
+							<li onclick="changeColor('Preto')">Preto</li>
+							<li onclick="changeColor('Azul')">Azul</li>
+							<li onclick="changeColor('Cinza')">Cinza</li>
+							<li onclick="changeColor('Verde')">Verde</li>
+							<li onclick="changeColor('Rosa')">Rosa</li>
+						</ul>
+					</details>
 
-    <div class="conteudo">
+					<div class="labels">
+						<div class="form-group">
+							<label class="lname" for="preco-minimo">Preço Mínimo:</label>
+							<input
+								class="label2"
+								type="number"
+								min="0"
+								id="preco-minimo"
+								name="preco-minimo"
+								required
+							/>
+						</div>
+						<div class="espaco"></div>
+						<div class="form-group">
+							<label class="lname" for="preco-maximo">Preço Máximo:</label>
+							<input
+								class="label2"
+								type="number"
+								min="0"
+								id="preco-maximo"
+								name="preco-maximo"
+								required
+							/>
+						</div>
+					</div>
 
-      <form class="rectangle" id="formulario" method="post" onsubmit="validarFormulario(); return false;">
-        <h1>Categorias</h1>
-        <details class="custom-select">
-          <summary id="dropdownSummary" class="radios" onclick="toggleDropdown('dropdown2')">Cores</summary>
+					<button class="btn" type="submit">GERAR</button>
+					<input type="hidden" id="selectedColor" name="color" />
+				</form>
 
-          <ul class="list" id="dropdown2">
-            <li onclick="changeColor('Azul Marinho')">Azul Marinho</li>
-            <li onclick="changeColor('Amarelo')">Amarelo</li>
-            <li onclick="changeColor('Vermelho')">Vermelho</li>
-            <li onclick="changeColor('Branco')">Branco</li>
-            <li onclick="changeColor('Preto')">Preto</li>
-          </ul>
+				<div class="item-show" id="recommendations-container">
+					<ul2 id="recomendacoes"></ul2>
+				</div>
+			</div>
+		</div>
 
-        </details>
-
-        <div class="labels">
-          <div class="form-group">
-            <label class="lname" for="preco-minimo">Preço Mínimo:</label>
-            <input class="label2" type="number" min="0" id="preco-minimo" name="preco-minimo" required />
-          </div>
-          <div class="espaco"></div>
-          <div class="form-group">
-            <label class="lname" for="preco-maximo">Preço Máximo:</label>
-            <input class="label2" type="number" min="0" id="preco-maximo" name="preco-maximo" required />
-          </div>
-        </div>
-
-        <button class="btn" type="submit">GERAR</button>
-        <input type="hidden" id="selectedColor" name="color" />
-      </form>
-
-      <div class="item-show" id="recommendations-container">
-        <ul2 id="recomendacoes"></ul2>
-      </div>
-
-    </div>
-  </div>
-
-  <img class="wave" src="/static/assets/onda.png" />
-
-
-</body>
-
+		<img class="wave" src="/static/assets/onda.png" />
+	</body>
 </html>

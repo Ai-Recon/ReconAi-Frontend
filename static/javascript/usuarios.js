@@ -6,11 +6,15 @@ function toggleDropdown(id) {
 function changeColor(color) {
 	// Mapear as cores do português para o inglês
 	var colorMap = {
-		"Azul Marinho": "navy",
+		"Azul Marinho": "navyblue",
 		Amarelo: "yellow",
 		Vermelho: "red",
 		Branco: "white",
 		Preto: "black",
+		Azul: "blue",
+		Cinza: "gray",
+		Verde: "green",
+		Rosa: "pink",
 	};
 	// Verificar se a cor está mapeada
 	if (colorMap[color]) {
@@ -74,12 +78,18 @@ function renderizarRecomendacoes(recommendations) {
 		let titulo = recommendation["title"]
 			.toLowerCase()
 			.replace(/\s+/g, "")
-			.replace("-", "");
-		let arrayTipoRoupa = ["tshirt"];
+			.replace(/-/g, "");
+
+		const arrayTipoRoupa = ["tshirt"];
+
+		// cores:["navyblue", "yellow", "red", "white", "black", "blue", 	"gray", "green", "pink"]
+
+		// salvar as imagens no seguinte formato: nome-cor
+		// exemplo: tshirt-white
 
 		arrayTipoRoupa.forEach((tipo) => {
-			if (titulo.includes(tipo)) {
-				imagemProd.src = `/static/assets/${tipo}.png`;
+			if (titulo.includes(tipo) || titulo.includes(tipo + "s")) {
+				imagemProd.src = `/static/assets/clothes/${tipo}-${recommendation["color"]}.png`;
 			}
 		});
 
