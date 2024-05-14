@@ -71,7 +71,13 @@ function renderizarRecomendacoes(recommendations) {
 
     var imagemProd = document.createElement("img");
     imagemProd.className = "roupa";
-    imagemProd.src = "/static/assets/camiseta.png";
+    let titulo = recommendation["title"].toLowerCase().replace(/\s+/g, '');
+    let palavras = ['tshirt']
+    switch(true){
+      case titulo.includes(palavras[0]):
+        imagemProd.src = "/static/assets/camiseta.png";
+        console.log(titulo);
+    }
     imagemProd.alt = "Imagem do produto";
     li2.appendChild(imagemProd);
 
