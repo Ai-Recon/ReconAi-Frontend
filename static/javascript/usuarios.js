@@ -80,9 +80,9 @@ function renderizarRecomendacoes(recommendations) {
 			.replace(/\s+/g, "")
 			.replace(/-/g, "");
 
-		const arrayTipoRoupa = ["tshirt"];
+		const arrayTipoRoupa = ["tshirt","short","bikini","tanktop","jumpsuits","femme","top","robe","cap","pant"];
 
-		// cores:["navyblue", "yellow", "red", "white", "black", "blue", 	"gray", "green", "pink"]
+		// cores:["navyblue", "yellow", "red", "white", "black", "blue", "gray", "green", "pink"]
 
 		// salvar as imagens no seguinte formato: nome-cor
 		// exemplo: tshirt-white
