@@ -10,11 +10,23 @@
   justify-content: flex-start;
   margin-left: 2.5%;
 }
+.ajuda{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+  margin-left: 70%;
+}
+
+.header h3{
+  color: white;
+  font-family: "Outfit Bold", sans-serif;
+  margin-left: 50%;
+}
 
 .background {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #1a1965 10%, #5e3dc8 100%);
+  background: linear-gradient(180deg, #2C2F71 0%, #080719 100%);
   position: absolute;
   bottom: 0;
 }
@@ -38,13 +50,12 @@
 }
 
 .rectangle {
-  background-color: #362890;
-  height: 90%;
-  width: 30%;
+  height: 85%;
+  width: 25%;
   border-radius: 30px;
-  box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25); */
   display: flex;
-  margin-left: 2.5%;
+  margin-left: 2%;
   align-items: center;
   flex-direction: column;
   color: white;
@@ -52,13 +63,12 @@
 
 .rectangle h1 {
   font-family: "Outfit Bold", sans-serif;
-  margin-top: 50px;
 }
 
 .item-show {
   padding: 20px;
   width: 70%;
-  height: 90%;
+  height: 100%;
   margin-left: 2.5%;
   margin-right: 5%;
   background-color: white;
@@ -80,7 +90,7 @@
 /* Drop down */
 details {
   position: relative;
-  width: 75%;
+  width: 85%;
   color: #5e3cc7;
   margin-top: 10%;
   font-weight: bold;
@@ -204,11 +214,10 @@ ul.list {
   color: white;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .label2 input[type="number"] {
-  width: 60%;
+  width: 100%;
   height: 40px;
   font-size: 16px;
   border-radius: 10px;
@@ -261,8 +270,8 @@ li.recommendation {
   height: 15%;
   list-style: none;
   display: flex;
-  margin: 15px;
-  border: 2px ridge #362890;
+  margin: 10px;
+  border: 2px ridge #5e3cc7;
   border-radius: 10px;
   align-items: center;
 }
@@ -289,7 +298,7 @@ li.recommendation {
 }
 
 .btn {
-  width: 75%;
+  width: 85%;
   height: 50px;
   border-radius: 10px;
   margin-top: 15%;
@@ -308,24 +317,26 @@ li.recommendation {
   justify-content: center;
   align-items: center;
   margin-top: 15%;
-  width: 75%;
+  width: 85%;
 }
 
 .label2 {
   height: 50px;
   border-radius: 10px;
+  font-size: 1rem;
   border: 0px;
-  color: #1a1965;
+  color: #5e3cc7;
   font-family: "Outfit Bold", sans-serif;
   font-weight: bolder;
-  padding-left: 5px;
+  padding: 1rem;
+
   margin-top: 10px;
 }
 
-.espaco {
-  width: 15px;
+.form-group{
+  width: 85%;
+  margin-top: 15%;
 }
-
 .lname {
   font-family: "Outfit Bold", sans-serif;
   font-weight: bolder;
