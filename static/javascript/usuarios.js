@@ -107,7 +107,7 @@ function renderizarRecomendacoes(recommendations) {
 		li2.appendChild(corProdutoSpan);
 
 		var tituloSpan = document.createElement("span");
-		tituloSpan.innerHTML = "<b>Título:</b> " + recommendation["title"] + "<br>";
+		tituloSpan.innerHTML = "<b>Nome:</b> " + recommendation["title"] + "<br>";
 		li2.appendChild(tituloSpan);
 
 		var classificacaoSpan = document.createElement("span");
