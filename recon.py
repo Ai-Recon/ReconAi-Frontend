@@ -15,14 +15,7 @@ app.secret_key = "PUC"
 # df_recomendacoes = pd.read_csv("backend\\src\\db\\database\\produtos.csv")
 
 # Defina uma rota para processar a solicitação dos usuários e exibir as recomendações
-@app.route("/")
-def homepage():
-    min_price = 0
-    max_price = 1000
-    return render_template("home.html", min_price=min_price, max_price=max_price)
-
-# Defina uma rota para processar a solicitação dos usuários e exibir as recomendações
-@app.route("/usuarios", methods=["GET", "POST"])
+@app.route("/recomendacao", methods=["GET", "POST"])
 def usuarios():
     if request.method == "POST":
         # Extrair os parâmetros do formulário
@@ -40,37 +33,17 @@ def usuarios():
         recommendations = get_recommendations(options)
 
         if not recommendations:
-            return render_template("usuarios.html")
+            return render_template("recomendacao.html")
 
         return recommendations
 
     else:
         # Se for uma solicitação GET, retorne a página HTML
-        return render_template("usuarios.html")
+        return render_template("recomendacao.html")
 
-@app.route("/inicio")
+@app.route("/")
 def inicio():
     return render_template("inicio.html")
-
-# @app.route(
-#     "/autenticar",
-#     methods=[
-#         "POST",
-#     ],
-# )
-# def autenticar():
-#     if "PUC" == request.form["senha"]:
-#         session["usuario_logado"] = request.form["usuario"]
-#         flash(session["usuario_logado"] + " logado com sucesso!")
-#         return redirect("/")
-#     else:
-#         flash("Usuário não logado")
-#         return redirect("/login")
-
-
-# @app.route("/login")
-# def login():
-#     return render_template("login.html")
 
 
 if __name__ == "__main__":

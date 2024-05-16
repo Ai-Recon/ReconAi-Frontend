@@ -3,10 +3,10 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Perfil do usuário</title>
+	<title>Recomendação</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="/static/css/usuarios.css" />
-	<script src="/static/javascript/usuarios.js"></script>
+	<link rel="stylesheet" href="/static/css/recomendacao.css" />
+	<script src="/static/javascript/recomendacao.js"></script>
 	<link rel="icon" href="/static/assets/Logo.png" type="image/x-icon">
 
 </head>
@@ -14,7 +14,9 @@
 <body>
 	<div class="background">
 		<header class="header">
-			<img class="img" src="/static/assets/header.png" alt="Imagem do perfil" />
+			<a href="/">
+				<img class="img" src="/static/assets/header.png" alt="Imagem do perfil" />
+			</a>
 			<div class="ajuda">
 				<h3>Ajuda</h3>
 				<h3>Suporte</h3>
@@ -44,11 +46,22 @@
 
 				<div class="form-group">
 					<label class="lname" for="preco-minimo">Preço Mínimo:</label>
-					<input class="label2" type="number" min="0" id="preco-minimo" name="preco-minimo" required />
+					<div class="input-with-symbol">
+						<span class="dollar-symbol">$</span>
+						<input class="label2" type="number" min="0" id="preco-minimo" name="preco-minimo" value="0"
+							required />
+					</div>
+					<!-- O valor padrão é definido como "50" -->
 				</div>
+				<div class="espaco"></div>
 				<div class="form-group">
 					<label class="lname" for="preco-maximo">Preço Máximo:</label>
-					<input class="label2" type="number" min="0" id="preco-maximo" name="preco-maximo" required />
+					<div class="input-with-symbol">
+						<span class="dollar-symbol">$</span>
+						<input class="label2" type="number" min="0" id="preco-maximo" name="preco-maximo" value="100"
+							required />
+					</div>
+					<!-- O valor padrão é definido como "100" -->
 				</div>
 
 				<button class="btn" type="submit">GERAR</button>

@@ -8,7 +8,7 @@
 }
 
 .main {
-  background: linear-gradient(180deg, #2c2f71 -25%, #080719 100%);
+  background: linear-gradient(180deg, #2c2f71 -80%, #080719 100%);
   bottom: 0;
   right: 0;
 }
@@ -50,6 +50,7 @@ body {
   width: 100%;
   justify-items: center;
 }
+
 .btn {
   margin-top: 5%;
   width: 50%;
@@ -59,11 +60,14 @@ body {
   border: 2px solid #fff;
   color: white;
   text-align: center;
-  justify-items: center;
   font-weight: bold;
   cursor: pointer;
   font-family: "Outfit Bold", sans-serif;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .botao_secundario {
@@ -77,7 +81,9 @@ body {
 }
 
 .container__imagem {
-  margin: 1em 0 2em 0;
+  margin: 2.5%;
+  height: auto;
+  width: auto;
 }
 
 .container__caixa {
