@@ -18,7 +18,6 @@ def create_df():
     """
     Cria um DataFrame a partir dos dados do banco de dados e realiza o pré-processamento.
     """
-    # df2 = pd.read_csv("db/database/produtos.csv", sep=",")
     data = fetch_data("SELECT * FROM PRODUTOS")
     df = convert_data_to_df(data)
     df = preprocess_data(df)
