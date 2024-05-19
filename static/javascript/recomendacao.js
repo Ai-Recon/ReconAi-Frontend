@@ -1,142 +1,156 @@
 function toggleDropdown(id) {
-	var dropdown = document.getElementById(id);
-	dropdown.classList.toggle("show");
+  var dropdown = document.getElementById(id);
+  dropdown.classList.toggle("show");
 }
 
 function changeColor(color) {
-	// Mapear as cores do português para o inglês
-	var colorMap = {
-		"Azul Marinho": "navyblue",
-		Amarelo: "yellow",
-		Vermelho: "red",
-		Branco: "white",
-		Preto: "black",
-		Azul: "blue",
-		Cinza: "gray",
-		Verde: "green",
-		Rosa: "pink",
-	};
-	// Verificar se a cor está mapeada
-	if (colorMap[color]) {
-		// Se estiver, definir a cor no dropdownSummary e no selectedColor
-		document.getElementById("dropdownSummary").textContent = "Cor: " + color;
-		document.getElementById("selectedColor").value = colorMap[color];
-	} else {
-		// Caso contrário, manter a cor original
-		document.getElementById("dropdownSummary").textContent = "Cor: " + color;
-		document.getElementById("selectedColor").value = color;
-	}
+  // Mapear as cores do português para o inglês
+  var colorMap = {
+    "Azul Marinho": "navyblue",
+    Amarelo: "yellow",
+    Vermelho: "red",
+    Branco: "white",
+    Preto: "black",
+    Azul: "blue",
+    Cinza: "gray",
+    Verde: "green",
+    Rosa: "pink",
+  };
+  // Verificar se a cor está mapeada
+  if (colorMap[color]) {
+    // Se estiver, definir a cor no dropdownSummary e no selectedColor
+    document.getElementById("dropdownSummary").textContent = "Cor: " + color;
+    document.getElementById("selectedColor").value = colorMap[color];
+  } else {
+    // Caso contrário, manter a cor original
+    document.getElementById("dropdownSummary").textContent = "Cor: " + color;
+    document.getElementById("selectedColor").value = color;
+  }
 }
 
 function validarFormulario() {
-	var precoMinimo = document.getElementById("preco-minimo").value;
-	var precoMaximo = document.getElementById("preco-maximo").value;
+  var precoMinimo = document.getElementById("preco-minimo").value;
+  var precoMaximo = document.getElementById("preco-maximo").value;
+  var selectedColor = document.getElementById("selectedColor").value;
 
-	if (precoMinimo < 0) {
-		alert("O preço mínimo não pode ser negativo.");
-		return false;
-	}
+  if (!selectedColor) {
+    alert("Por favor, selecione uma cor.");
+    return false;
+  }
 
-	if (precoMaximo < 0) {
-		alert("O preço máximo não pode ser negativo.");
-		return false;
-	}
+  if (precoMinimo < 0) {
+    alert("O preço mínimo não pode ser negativo.");
+    return false;
+  }
 
-	if (parseInt(precoMinimo) >= parseInt(precoMaximo)) {
-		alert("O preço mínimo deve ser menor que o preço máximo.");
-		return false;
-	}
+  if (precoMaximo < 0) {
+    alert("O preço máximo não pode ser negativo.");
+    return false;
+  }
 
-	gerarRecomendacoes();
+  if (parseInt(precoMinimo) >= parseInt(precoMaximo)) {
+    alert("O preço mínimo deve ser menor que o preço máximo.");
+    return false;
+  }
+
+  gerarRecomendacoes();
+  return false;
 }
-
 function gerarRecomendacoes() {
-	var formulario = document.getElementById("formulario");
-	var formData = new FormData(formulario);
+  var formulario = document.getElementById("formulario");
+  var formData = new FormData(formulario);
 
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "/recomendacao", true);
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var recommendations = JSON.parse(xhr.responseText);
-			renderizarRecomendacoes(recommendations);
-		}
-	};
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/recomendacao", true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      try {
+        var recommendations = JSON.parse(xhr.responseText);
+        renderizarRecomendacoes(recommendations);
+      } catch (e) {
+        console.error("Failed to parse JSON response: ", e);
+        renderizarRecomendacoes([]);
+      }
+    }
+  };
 
-	xhr.send(formData);
+  xhr.send(formData);
 }
 
 function renderizarRecomendacoes(recommendations) {
-	var recommendationsList = document.getElementById("recomendacoes");
-	recommendationsList.innerHTML = "";
-	recommendations.forEach(function (recommendation) {
-		var li2 = document.createElement("li2");
-		li2.className = "titulo";
+  var recommendationsList = document.getElementById("recomendacoes");
+  recommendationsList.innerHTML = "";
 
-		var imagemProd = document.createElement("img");
-		imagemProd.className = "roupa";
-		let titulo = recommendation["title"]
-			.toLowerCase()
-			.replace(/\s+/g, "")
-			.replace(/-/g, "");
+  if (recommendations.length === 0) {
+    var noProductsMessage2 = document.createElement("div");
+    noProductsMessage2.className = "titulo";
+    noProductsMessage2.textContent =
+      "Não há produtos disponíveis com os critérios selecionados.";
 
-		const arrayTipoRoupa = [
-			"tshirt",
-			"short",
-			"bikini",
-			"tanktop",
-			"jumpsuits",
-			"femme",
-			"top",
-			"robe",
-			"cap",
-			"pant",
-		];
+    recommendationsList.appendChild(noProductsMessage2);
+    return;
+  }
 
-		// cores:["navyblue", "yellow", "red", "white", "black", "blue", "gray", "green", "pink"]
+  recommendations.forEach(function (recommendation) {
+    var li2 = document.createElement("li2");
+    li2.className = "titulo";
 
-		// salvar as imagens no seguinte formato: nome-cor
-		// exemplo: tshirt-white
+    var imagemProd = document.createElement("img");
+    imagemProd.className = "roupa";
+    let titulo = recommendation["title"]
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/-/g, "");
 
-		var hasImage = false;
-		arrayTipoRoupa.forEach((tipo) => {
-			if (titulo.includes(tipo) || titulo.includes(tipo + "s")) {
-				imagemProd.src = `/static/assets/clothes/${tipo}-${recommendation["color"]}.jpg`;
-				hasImage = true;
-			}
-		});
+    const arrayTipoRoupa = [
+      "tshirt",
+      "short",
+      "bikini",
+      "tanktop",
+      "jumpsuits",
+      "femme",
+      "top",
+      "robe",
+      "cap",
+      "pant",
+    ];
 
-		// Se não houver imagem, pular para o próximo produto
-		if (!hasImage) {
-      console.log("entrou")
-			return;
-		}
+    var hasImage = false;
+    arrayTipoRoupa.forEach((tipo) => {
+      if (titulo.includes(tipo) || titulo.includes(tipo + "s")) {
+        imagemProd.src = `/static/assets/clothes/${tipo}-${recommendation["color"]}.jpg`;
+        hasImage = true;
+      }
+    });
 
-		imagemProd.alt = "Imagem do produto";
-		li2.appendChild(imagemProd);
+    if (!hasImage) {
+      return;
+    }
 
-		// Adiciona um espaço em branco entre os itens
-		var hr = document.createElement("hr");
-		li2.appendChild(hr);
+    imagemProd.alt = "Imagem do produto";
+    li2.appendChild(imagemProd);
 
-		var corProdutoSpan = document.createElement("span");
-		corProdutoSpan.innerHTML =
-			"<b>Cor do produto:</b> " + recommendation["color"] + "<br>";
-		li2.appendChild(corProdutoSpan);
+    var hr = document.createElement("hr");
+    li2.appendChild(hr);
 
-		var tituloSpan = document.createElement("span");
-		tituloSpan.innerHTML = "<b>Nome:</b> " + recommendation["title"] + "<br>";
-		li2.appendChild(tituloSpan);
+    var corProdutoSpan = document.createElement("span");
+    corProdutoSpan.innerHTML =
+      "<b>Cor do produto:</b> " + recommendation["color"] + "<br>";
+    li2.appendChild(corProdutoSpan);
 
-		var classificacaoSpan = document.createElement("span");
-		classificacaoSpan.innerHTML =
-			"<b>Classificação:</b> " + recommendation["rating"] + "<br>";
-		li2.appendChild(classificacaoSpan);
+    var tituloSpan = document.createElement("span");
+    tituloSpan.innerHTML = "<b>Nome:</b> " + recommendation["title"] + "<br>";
+    li2.appendChild(tituloSpan);
 
-		var precoSpan = document.createElement("span");
-		precoSpan.innerHTML = "<b>Preço:</b> " + recommendation["price"];
-		li2.appendChild(precoSpan);
+    var classificacaoSpan = document.createElement("span");
+    classificacaoSpan.innerHTML =
+      "<b>Classificação:</b> " + recommendation["rating"] + "<br>";
+    li2.appendChild(classificacaoSpan);
 
-		recommendationsList.appendChild(li2);
-	});
+    var precoSpan = document.createElement("span");
+    precoSpan.innerHTML = "<b>Preço:</b> " + recommendation["price"];
+    li2.appendChild(precoSpan);
+
+    recommendationsList.appendChild(li2);
+  });
 }
