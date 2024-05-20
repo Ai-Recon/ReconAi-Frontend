@@ -46,6 +46,7 @@
   height: 250px;
   width: 80%;
   align-self: center;
+  object-fit: cover;
 }
 
 .conteudo {
