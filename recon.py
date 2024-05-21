@@ -2,7 +2,7 @@ import pandas as pd
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 
 # carrega com os dados do banco
-from backend.src.main_db import get_recommendations
+from backend.src.main_db import get_product_recommendations, get_recommendations
 
 # carrega com os dados do csv
 # from backend.src.main_csv import get_recommendations
@@ -18,7 +18,7 @@ app.secret_key = "PUC"
 
 # Defina uma rota para processar a solicitação dos usuários e exibir as recomendações
 @app.route("/recomendacao", methods=["GET", "POST"])
-def usuarios():
+def recomendacao():
     if request.method == "POST":
         # Extrair os parâmetros do formulário
         price_min = float(request.form.get("preco-minimo", 0))
@@ -42,6 +42,32 @@ def usuarios():
     else:
         # Se for uma solicitação GET, retorne a página HTML
         return render_template("recomendacao.html")
+
+
+@app.route("/produto")
+def produto():
+    title = request.args.get("title")
+    color = request.args.get("color")
+    rating = request.args.get("rating")
+    price = request.args.get("price")
+    imagem = request.args.get("imagem")
+
+    # Use os parâmetros recebidos para gerar novas recomendações para o produto selecionado
+    options = {"price_range": (int(price) - 2, int(price) + 2), "color": "all"}
+    recommendations = get_recommendations(options)
+
+    # recommendations = get_product_recommendations(title)
+
+    # Renderize a página HTML passando os detalhes do produto e as novas recomendações
+    return render_template(
+        "produto.html",
+        title=title,
+        color=color,
+        rating=rating,
+        price=price,
+        imagem=imagem,
+        recommendations=recommendations,
+    )
 
 
 @app.route("/")

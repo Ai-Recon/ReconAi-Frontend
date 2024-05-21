@@ -31,3 +31,11 @@ def convert_df_to_json(df):
     """
     json_data = df.to_json(orient="records")
     return json_data
+
+
+def convert_json_to_df(json):
+    """
+    Converte os dados do DataFrame para JSON
+    """
+    df = pd.DataFrame(json)
+    return df

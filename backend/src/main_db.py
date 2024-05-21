@@ -1,4 +1,5 @@
 import pandas as pd
+import sklearn.metrics.pairwise as pw
 
 from backend.src.db.db_functions import fetch_data
 from backend.src.services.calculate import calculate_cosine_similarity
@@ -14,11 +15,11 @@ from backend.src.services.recommend import recommend_products
 # from services.recommend import recommend_products
 
 
-def create_df():
+def create_df(query):
     """
     Cria um DataFrame a partir dos dados do banco de dados e realiza o pré-processamento.
     """
-    data = fetch_data("SELECT * FROM PRODUTOS")
+    data = fetch_data(query)
     df = convert_data_to_df(data)
     df = preprocess_data(df)
     return df
@@ -69,7 +70,9 @@ def show_recommendations(df, price_range, color):
 
 def get_recommendations(options):
     # Criação do DataFrame a partir dos dados do banco - dados pré-processados
-    df = create_df()
+    df = create_df("SELECT * FROM PRODUTOS")
+
+    print(df)
 
     # Pegando as informações necessárias para o algorítimo de recomendação
     # options = get_options()
@@ -90,3 +93,33 @@ def get_recommendations(options):
     json_recommendations = convert_df_to_json(df_recommendations)
 
     return json_recommendations
+
+
+import numpy as np
+import pandas as pd
+
+
+def get_product_recommendations(title):
+    df = create_df("SELECT * FROM PRODUTOS")
+
+    tabela_roupas = pd.pivot_table(
+        df, index="title", columns="id", values="rating"
+    ).fillna(0)
+
+    rec = pw.cosine_similarity(tabela_roupas)
+    rec_df = pd.DataFrame(rec, columns=tabela_roupas.index, index=tabela_roupas.index)
+
+    cossine_df = pd.DataFrame(rec_df[title].sort_values(ascending=False))
+
+    cossine_df.columns = ["recommendation"]
+
+    # Adicionando a coluna recommendation ao DataFrame df
+    df["recommendation"] = np.nan
+
+    # Inserindo os valores da coluna recommendation do cossine_df no df
+    for index, row in cossine_df.iterrows():
+        df.loc[df["title"] == index, "recommendation"] = row["recommendation"]
+
+    json_product_recommendations = convert_df_to_json(df)
+
+    return json_product_recommendations

@@ -8,11 +8,16 @@ def recommend_products(price_range, color, similarity_matrix, df):
     Lógica da recomendação dos produtos
     """
     # Filtrando produtos dentro do intervalo de preço e com a cor desejada
-    filtered_products = df[
-        (df["price"] >= price_range[0])
-        & (df["price"] <= price_range[1])
-        & (df["color"] == color)
-    ]
+    if color != "all":
+        filtered_products = df[
+            (df["price"] >= price_range[0])
+            & (df["price"] <= price_range[1])
+            & (df["color"] == color)
+        ]
+    else:
+        filtered_products = df[
+            (df["price"] >= price_range[0]) & (df["price"] <= price_range[1])
+        ]
 
     # Imprimindo o número de produtos filtrados
     print("Número de produtos filtrados:", len(filtered_products))
@@ -53,6 +58,8 @@ def recommend_products(price_range, color, similarity_matrix, df):
 
     # Extraindo os títulos dos produtos recomendados
     recommended_titles = [df.loc[idx] for idx, _ in recommended_indices]
+
+    print(recommended_titles)
 
     # Retorna os produtos recomendados
     return recommended_titles

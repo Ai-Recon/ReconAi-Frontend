@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Detalhes do Produto</title>
+		<link rel="stylesheet" href="/static/css/recomendacao.css" />
+		<link rel="stylesheet" href="../static/css/produto.css" />
+		<link rel="icon" href="/static/assets/Logo.png" type="image/x-icon" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="background">
+			<header class="header">
+				<a href="/">
+					<img
+						class="img"
+						src="/static/assets/header.png"
+						alt="Imagem do perfil"
+					/>
+				</a>
+				<div class="ajuda">
+					<h3>Ajuda</h3>
+					<h3>Suporte</h3>
+				</div>
+			</header>
+			<div class="conteudo">
+				<div class="container">
+					<h1>Detalhes do Produto</h1>
+					<img src="{{ imagem }}" alt="Foto do Produto" />
+					<div class="produto-detalhes">
+						<p><b>Nome:</b> {{ title }}</p>
+						<p><b>Cor:</b> {{ color }}</p>
+						<p><b>Classificação:</b> {{ rating }} estrelas</p>
+						<p><b>Preço:</b> $ {{ price }}</p>
+					</div>
+					<a href="/recomendacao" class="btn-voltar">Voltar</a>
+				</div>
+			</div>
+			<h1 class="rel">Recomendações de produtos relacionados:</h1>
+			<div
+				class="item-show"
+				id="recommendations-container"
+				data-recommendations="{{ recommendations }}"
+			>
+				<ul2 id="recomendacoes"></ul2>
+			</div>
+		</div>
+		<img class="wave" src="/static/assets/onda.png" />
+
+		<script src="../static/javascript/produtos.js"></script>
+	</body>
+</html>
