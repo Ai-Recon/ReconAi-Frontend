@@ -77,9 +77,21 @@ document.addEventListener("DOMContentLoaded", function () {
 		li.appendChild(precoSpan);
 
 		li.onclick = function () {
-			redirecionarParaRec(recommendation, imagemProd);
+			redirecionarProduto(recommendation, imagemProd);
 		};
 
 		recommendationsList.appendChild(li);
 	});
 });
+
+function redirecionarProduto(recommendation, imagemProd) {
+	const queryString = new URLSearchParams({
+		title: recommendation["title"],
+		color: recommendation["color"],
+		rating: recommendation["rating"],
+		price: recommendation["price"],
+		imagem: imagemProd.src,
+	}).toString();
+	console.log(queryString);
+	window.location.href = `/produto?${queryString}`;
+}
