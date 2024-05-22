@@ -53,7 +53,7 @@ def produto():
     imagem = request.args.get("imagem")
 
     # Use os parâmetros recebidos para gerar novas recomendações para o produto selecionado
-    options = {"price_range": (int(price) - 2, int(price) + 2), "color": "all"}
+    options = {"price_range": (float(price) - 2, float(price) + 2), "color": "all"}
     recommendations = get_recommendations(options)
 
     # recommendations = get_product_recommendations(title)
