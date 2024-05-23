@@ -56,6 +56,7 @@ function validarFormulario() {
 	gerarRecomendacoes();
 	return false;
 }
+
 function gerarRecomendacoes() {
 	var formulario = document.getElementById("formulario");
 	var formData = new FormData(formulario);
@@ -133,6 +134,10 @@ function renderizarRecomendacoes(recommendations) {
 		var hr = document.createElement("hr");
 		li2.appendChild(hr);
 
+		var idSpan = document.createElement("span");
+		idSpan.innerHTML = "<b>Código:</b> " + recommendation["id"] + "<br>";
+		li2.appendChild(idSpan);
+
 		var corProdutoSpan = document.createElement("span");
 		corProdutoSpan.innerHTML =
 			"<b>Cor do produto:</b> " + recommendation["color"] + "<br>";
@@ -161,6 +166,7 @@ function renderizarRecomendacoes(recommendations) {
 
 function redirecionarProduto(recommendation, imagemProd) {
 	const queryString = new URLSearchParams({
+		id: recommendation["id"],
 		title: recommendation["title"],
 		color: recommendation["color"],
 		rating: recommendation["rating"],

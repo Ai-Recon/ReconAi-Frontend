@@ -1,66 +1,69 @@
-import pandas as pd
-from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask import Flask, render_template, request
 
-# carrega com os dados do banco
-from backend.src.main_db import get_product_recommendations, get_recommendations
+from backend.src.main import get_filtered_products, get_recommendations
 
-# carrega com os dados do csv
-# from backend.src.main_csv import get_recommendations
-
-
+# Inicializa a aplicação Flask e define o diretório estático
 app = Flask(__name__, static_folder="static")
 
-app.secret_key = "PUC"
 
-# Carregar os dados pré-processados e calculados de main.py
-# df_recomendacoes = pd.read_csv("backend\\src\\db\\database\\produtos.csv")
-
-
-# Defina uma rota para processar a solicitação dos usuários e exibir as recomendações
+# Define uma rota /recomendacao
 @app.route("/recomendacao", methods=["GET", "POST"])
 def recomendacao():
     if request.method == "POST":
-        # Extrair os parâmetros do formulário
+        # Extrai os parâmetros do formulário enviado pelo método POST
         price_min = float(request.form.get("preco-minimo", 0))
         price_max = float(request.form.get("preco-maximo", 1000))
         color = request.form.get("color")
 
-        # Agora você tem acesso ao preço mínimo, preço máximo e cor selecionada pelo usuário
+        # Exibe os parâmetros extraídos
         print("Preço Mínimo:", price_min)
         print("Preço Máximo:", price_max)
         print("Cor Selecionada:", color)
 
-        options = {"price_range": (price_min, price_max), "color": color}
+        # Cria uma variável para guardar as opções de filtragem
+        options = {"price_range": (float(price_min), float(price_max)), "color": color}
 
-        recommendations = get_recommendations(options)
+        # Obtém os produtos filtrados com base nas opções fornecidas
+        filtered_products = get_filtered_products(options)
 
-        if not recommendations:
+        # Verifica se não há produtos filtrados
+        if not filtered_products:
             return render_template("recomendacao.html")
 
-        return recommendations
+        return filtered_products
 
     else:
-        # Se for uma solicitação GET, retorne a página HTML
+        # Se for uma solicitação GET, retorna a página HTML de recomendação
         return render_template("recomendacao.html")
 
 
+# Define a rota /produto
 @app.route("/produto")
 def produto():
+    # Obtém os dados do produto passadas pela URL
+    ID = request.args.get("id")
     title = request.args.get("title")
     color = request.args.get("color")
     rating = request.args.get("rating")
     price = request.args.get("price")
     imagem = request.args.get("imagem")
 
-    # Use os parâmetros recebidos para gerar novas recomendações para o produto selecionado
-    options = {"price_range": (float(price) - 2, float(price) + 2), "color": "all"}
-    recommendations = get_recommendations(options)
+    # Cria um dicionário contendo as informações da roupa escolhida
+    chosen_product = {
+        "ID": ID,
+        "title": title,
+        "color": color,
+        "rating": rating,
+        "price": price,
+    }
 
-    # recommendations = get_product_recommendations(title)
+    # Obtém as recomendações de produtos com base na roupa escolhida
+    recommendations = get_recommendations(chosen_product)
 
-    # Renderize a página HTML passando os detalhes do produto e as novas recomendações
+    # Renderiza a página HTML passando os detalhes do produto e as novas recomendações
     return render_template(
         "produto.html",
+        id=ID,
         title=title,
         color=color,
         rating=rating,
@@ -70,10 +73,13 @@ def produto():
     )
 
 
+# Define a rota inicial da aplicação
 @app.route("/")
 def inicio():
+    # Renderiza a página HTML inicial
     return render_template("inicio.html")
 
 
+# Inicia a execução da aplicação Flask
 if __name__ == "__main__":
     app.run(debug=True)

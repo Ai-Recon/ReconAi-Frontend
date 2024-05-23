@@ -1,24 +1,20 @@
-import os
-
-import pandas as pd
-
-from backend.src.services.convert import convert_df_to_json
+from backend.src.db.db_functions import fetch_data
+from backend.src.services.convert import convert_data_to_df, convert_df_to_json
 from backend.src.services.recommend import filter_products, recommended_products
 
 # Importações para debug
-# from services.convert import convert_df_to_json
+# from db.db_functions import fetch_data
+# from services.convert import convert_data_to_df, convert_df_to_json
 # from services.recommend import filter_products, recommended_products
 
 
-def create_df():
+def create_df(query):
     """
-    Cria um DataFrame a partir dos dados do arquivo csv e realiza o pré-processamento.
+    Cria um DataFrame a partir dos dados do banco de dados e realiza o pré-processamento.
     """
 
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(current_dir, "db", "database", "produtos.csv")
-    df = pd.read_csv(file_path, sep=",")
-
+    data = fetch_data(query)
+    df = convert_data_to_df(data)
     return df
 
 
