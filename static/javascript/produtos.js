@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	var recommendationsList = document.getElementById("recomendacoes");
 
 	// Popula a lista de recomendações
-	recommendationsData.slice(0, 30).forEach(function (recommendation) {
+	recommendationsData.slice(0, 50).forEach(function (recommendation) {
 		var li2 = document.createElement("li2");
 		li2.className = "titulo";
 
