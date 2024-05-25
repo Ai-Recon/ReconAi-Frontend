@@ -1,77 +1,90 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-padrao);
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--font-padrao);
 }
 
-img {
+.container img {
 	height: 200px;
 	width: auto;
-  border-radius: 20px;
+	border-radius: 20px;
+	align-self: center;
+	object-fit: cover;
 }
 
 .conteudo {
-  max-width: 1350px;
+	max-width: 1350px;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	padding: 30px;
 
 	background-color: #fff;
-	height: 85%;
+	height: 87%;
 	width: 25%;
 	border-radius: 30px;
-	/* box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25); */
 	display: flex;
-	margin-left: 2%;
+	margin-left: 5%;
 	align-items: center;
 	flex-direction: column;
 	color: rgb(0, 0, 0);
-  border: 4px solid #989bff;
+	border: 4px solid #080719cf;
 }
 
 .container h1 {
 	font-family: "Outfit", sans-serif;
-  font-size: 22px;
+	font-size: 22px;
+	color: #080719cf;
+}
+
+h4 {
+	font-family: "Outfit", sans-serif;
+	position: fixed;
+	bottom: 100px;
+	right: 100px;
+	color: #fff;
+	font-size: 22px;
 }
 
 .produto-detalhes {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .item-show {
-  position: absolute;
-  right: 2.5%;
-  top: 100px;
+	position: absolute;
+	right: 0;
+	top: 110px;
+	width: 66.7%;
+	border: 4px solid #080719cf;
 }
 
 .rel {
-  position: absolute;
-  top: 50px;
-  left: 24%;
-  color: #fff;
-  font-size: 30px;
-  font-family: "Outfit", sans-serif;
+	position: absolute;
+	top: 50px;
+	left: 29%;
+	color: #fff;
+	font-size: 30px;
+	font-family: "Outfit", sans-serif;
 }
 
 .btn-voltar {
-  text-align: center;
-  text-decoration: none;
-  color: #7c80ff;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: "Outfit", sans-serif;
-  font-size: 20px;
-  border: 2px solid #7c80ff;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100px;
+	text-align: center;
+	text-decoration: none;
+	color: #080719;
+	font-weight: bold;
+	cursor: pointer;
+	font-family: "Outfit", sans-serif;
+	font-size: 20px;
+	border: 2px solid #080719;
+	border-radius: 10px;
+	padding: 10px;
+	width: 100px;
 }
