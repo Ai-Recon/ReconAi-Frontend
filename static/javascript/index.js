@@ -91,14 +91,23 @@ function renderizarItem(recommendation, recommendationsList) {
 	const hr = document.createElement("hr");
 	li.appendChild(hr);
 
-	const info = ["id", "color", "title", "rating", "price"];
-	info.forEach(function (prop) {
+	const labels = {
+		id: "Código",
+		title: "Título",
+		color: "Cor",
+		rating: "Classificação",
+		price: "Preço",
+	};
+
+	Object.keys(labels).forEach((key) => {
 		const span = document.createElement("span");
-		span.innerHTML = `<b>${
-			prop === "color"
-				? "Cor do produto"
-				: prop.charAt(0).toUpperCase() + prop.slice(1)
-		}:</b> ${recommendation[prop]}<br>`;
+		let value = recommendation[key];
+		if (key === "rating") {
+			value += " estrelas";
+		} else if (key === "price") {
+			value = `$ ${value}`;
+		}
+		span.innerHTML = `<b>${labels[key]}: </b> ${value} <br>`;
 		li.appendChild(span);
 	});
 

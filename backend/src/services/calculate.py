@@ -68,7 +68,7 @@ def combine_features(
     is_dict=False,
 ):
     """
-    Combina os títulos, cores, preços e classificações em uma única matriz de características
+    Combina os títulos, cores, preços e classificações em uma única matriz de características do DataFrame ou de um produto escolhido
     """
     if is_dataframe:
         # Cria um DataFrame das características e insere os títulos vetorizados
