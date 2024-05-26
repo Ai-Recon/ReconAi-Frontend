@@ -1,11 +1,10 @@
 from backend.src.db.db_functions import fetch_data
-from backend.src.services.convert import convert_data_to_df, convert_df_to_json
+from backend.src.services.convert import (
+    convert_data_to_df,
+    convert_df_to_json,
+    convert_dict_to_df,
+)
 from backend.src.services.recommend import filter_products, recommended_products
-
-# Importações para debug
-# from db.db_functions import fetch_data
-# from services.convert import convert_data_to_df, convert_df_to_json
-# from services.recommend import filter_products, recommended_products
 
 
 def create_df(query):
@@ -39,7 +38,7 @@ def get_filtered_products(options):
     return json_filtered
 
 
-def get_recommendations(chosen_product):
+def get_recommendations(dict_chosen_product):
     """
     Obtém recomendações de produtos com base na roupa escolhida pelo usuário.
     """
@@ -47,8 +46,11 @@ def get_recommendations(chosen_product):
     # Cria um DataFrame a partir dos dados do banco de dados
     df_products = create_df("SELECT * FROM PRODUTOS")
 
+    # Converte o dicionário do produto escolhido em um DataFrame
+    df_chosen_product = convert_dict_to_df(dict_chosen_product)
+
     # Obtém as recomendações de produtos com base na roupa escolhida
-    df_recommendations = recommended_products(df_products, chosen_product)
+    df_recommendations = recommended_products(df_products, df_chosen_product)
 
     # Converte o DataFrame das recomendações para formato JSON
     json_recommendations = convert_df_to_json(df_recommendations)

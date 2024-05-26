@@ -1,12 +1,12 @@
 from backend.src.services.calculate import get_cosine_similarity
 
 
-def recommended_products(df_products, chosen_product):
+def recommended_products(df_products, df_chosen_product):
     """
     Obtém os produtos recomendados com base na roupa escolhida pelo usuário
     """
     # Calcula a similaridade de cossenos entre a roupa escolhida e todos os produtos no DataFrame
-    cossine_sim = get_cosine_similarity(df_products, chosen_product)
+    cossine_sim = get_cosine_similarity(df_products, df_chosen_product)
 
     # Adiciona uma coluna de similaridade ao DataFrame original
     df_products["similarity"] = cossine_sim["similarity"]

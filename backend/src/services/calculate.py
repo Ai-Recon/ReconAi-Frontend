@@ -1,185 +1,121 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 
 
-def vectorize_features(data, Vectorizer):
+def unify_dfs(df_products, df_chosen_product):
     """
-    Vetoriza os títulos do DataFrame ou do produto escolhido
+    Unifica o DataFrame dos produtos com o DataFrame do produto escolhido
     """
-    if isinstance(data, pd.DataFrame):
-        # Vetorizando os títulos do DataFrame em uma matriz
-        matrix = Vectorizer.fit_transform(data["title"])
+    unified_df = pd.concat([df_chosen_product, df_products], ignore_index=True)
+    return unified_df
 
-    elif isinstance(data, dict):
-        # Vetorizando o título da roupa escolhida em uma matriz
-        matrix = Vectorizer.transform([data["title"]])
 
+def vectorize_features(df, Vectorizer):
+    """
+    Vetoriza os títulos do DataFrame
+    """
+    # Vetorizando os títulos do DataFrame em uma matriz
+    matrix = Vectorizer.fit_transform(df["title"])
     return matrix
 
 
-def scale_features(data, Scaler):
+def normalize_features(df, Scaler):
     """
-    Escala (padroniza) as características numéricas (preço e classificação) do DataFrame ou de um único produto escolhido
+    Normaliza as características numéricas (preço e classificação) do DataFrame
     """
-    if isinstance(data, pd.DataFrame):
-        # Seleciona as características do DataFrame
-        numeric_features = data[["price", "rating"]]
+    # Seleciona as características do DataFrame
+    numeric_features = df[["price", "rating"]]
 
-        # Padronização das características
-        numeric_features_scaled = Scaler.fit_transform(numeric_features)
-
-    elif isinstance(data, dict):
-        # Seleciona as características da roupa escolhida
-        numeric_features = [[data["price"], data["rating"]]]
-
-        # Padronização das características
-        numeric_features_scaled = Scaler.transform(numeric_features)
-
-    return numeric_features_scaled
+    # Normalização das características
+    numeric_features_normalized = Scaler.fit_transform(numeric_features)
+    return numeric_features_normalized
 
 
-def encode_features(data, Encoder):
+def encode_features(df, Encoder):
     """
-    Codifica as cores usando one-hot encoding para o DataFrame ou para um único produto escolhido
+    Codifica as cores usando one-hot encoding para o DataFrame
     """
-    if isinstance(data, pd.DataFrame):
-        # Codificação de cores para DataFrame
-        color_features = data[["color"]]
+    # Seleciona as características do DataFrame
+    features = df[["color"]]
 
-        features_encoded = Encoder.fit_transform(color_features).toarray()
-    elif isinstance(data, dict):
-        # Codificação de cores para um único produto
-        color_features = [[data["color"]]]
-
-        features_encoded = Encoder.transform(color_features).toarray()
-
+    # Codifica as características
+    features_encoded = Encoder.fit_transform(features).toarray()
     return features_encoded
 
 
 def combine_features(
-    vectorized_titles,
-    scaled_features,
-    encoded_colors,
-    Vectorizer,
-    Encoder,
-    is_dataframe=False,
-    is_dict=False,
+    vectorized_titles, normalized_price_and_rating, encoded_colors, Vectorizer, Encoder
 ):
     """
-    Combina os títulos, cores, preços e classificações em uma única matriz de características do DataFrame ou de um produto escolhido
+    Combina os dados tratados (títulos, cores, preços e classificações) em um único Dataframe de características
     """
-    if is_dataframe:
-        # Cria um DataFrame das características e insere os títulos vetorizados
-        feature_matrix = pd.DataFrame(
-            vectorized_titles.toarray(), columns=Vectorizer.get_feature_names_out()
-        )
-
-        # Insere os preços e as classificações padronizadas no DataFrame criado
-        feature_matrix = feature_matrix.join(
-            pd.DataFrame(scaled_features, columns=["price", "rating"])
-        )
-
-        # Insere as cores codificadas no Dataframe
-        feature_matrix = feature_matrix.join(
-            pd.DataFrame(
-                encoded_colors,
-                columns=Encoder.get_feature_names_out(["color"]),
-            )
-        )
-
-    if is_dict:
-        # Cria um DataFrame das características e insere os títulos vetorizados
-        feature_matrix = pd.DataFrame(
-            [vectorized_titles.toarray()[0]],
-            columns=Vectorizer.get_feature_names_out(),
-        )
-
-        # Insere os preços e as classificações padronizadas no DataFrame criado
-        feature_matrix = feature_matrix.join(
-            pd.DataFrame([scaled_features[0]], columns=["price", "rating"])
-        )
-
-        # Insere as cores codificadas no Dataframe
-        feature_matrix = feature_matrix.join(
-            pd.DataFrame(
-                [encoded_colors[0]],
-                columns=Encoder.get_feature_names_out(["color"]),
-            )
-        )
-
-    return feature_matrix
-
-
-def calculate_cosine_similarity(df_feature_matrix, chosen_product_matrix):
-    """
-    Calcula a similaridade de cossenos entre a roupa escolhida e todas as roupas no DataFrame
-    """
-    # Junta as matrizes de características em uma matriz principal
-    main_matrix = pd.concat(
-        [df_feature_matrix, chosen_product_matrix], ignore_index=True
+    # Cria um DataFrame das características e insere os títulos vetorizados
+    df_features = pd.DataFrame(
+        vectorized_titles.toarray(), columns=Vectorizer.get_feature_names_out()
     )
 
-    # Calcula a similaridade de cossenos entre a roupa escolhida e todas as outras roupas
-    similarity = cosine_similarity(main_matrix)
+    # Insere os preços e as classificações normalizadas no DataFrame criado
+    df_features = df_features.join(
+        pd.DataFrame(normalized_price_and_rating, columns=["price", "rating"])
+    )
 
-    return similarity[-1][:-1]
+    # Insere as cores codificadas no Dataframe criado
+    df_features = df_features.join(
+        pd.DataFrame(
+            encoded_colors,
+            columns=Encoder.get_feature_names_out(["color"]),
+        )
+    )
+    return df_features
 
 
-def get_cosine_similarity(df_products, chosen_product):
+def calculate_cosine_similarity(df_features):
+    """
+    Calcula a similaridade de cossenos entre todos os produtos do DataFrame
+    """
+    similarity = cosine_similarity(df_features)
+
+    # Retorna apenas a similaridade do primeiro produto do Dataframe - produto escolhido
+    return similarity[0][1:]
+
+
+def get_cosine_similarity(df_products, df_chosen_product):
     # Inicializa o vetorizador TF-IDF
     Vectorizer = TfidfVectorizer()
-    # Inicializa o escalonador (padronizador)
-    Scaler = StandardScaler()
+    # Inicializa o escalonador (normalizador)
+    Scaler = MinMaxScaler()
     # Inicializa o codificador one-hot
     Encoder = OneHotEncoder()
 
-    # Vetoriza os títulos das roupas do DataFrame
-    vectorized_df_titles = vectorize_features(df_products, Vectorizer)
-    # Vetoriza o título da roupa escolhida
-    vectorized_product_title = vectorize_features(chosen_product, Vectorizer)
+    # Unifica o DataFrame dos produtos com o do produto escolhido
+    unified_df = unify_dfs(df_products, df_chosen_product)
 
-    # Padroniza as classificações e os preços das roupas do DataFrame
-    scaled_df_features = scale_features(df_products, Scaler)
-    # Padroniza as classificação e o preço da roupa escolhida
-    scaled_product_features = scale_features(chosen_product, Scaler)
+    # Vetoriza os títulos do DataFrame
+    vectorized_df_titles = vectorize_features(unified_df, Vectorizer)
+
+    # Normaliza as classificações e os preços do DataFrame
+    normalized_df_price_and_rating = normalize_features(unified_df, Scaler)
 
     # Codifica as cores do DataFrame
-    encoded_df_colors = encode_features(df_products, Encoder)
-    # Codifica a cor da roupa escolhida
-    encoded_product_color = encode_features(chosen_product, Encoder)
+    encoded_df_colors = encode_features(unified_df, Encoder)
 
-    # Combina as características do DataFrame em uma única matriz
-    df_feature_matrix = combine_features(
+    # Combina as características em um único DataFrame
+    df_features = combine_features(
         vectorized_df_titles,
-        scaled_df_features,
+        normalized_df_price_and_rating,
         encoded_df_colors,
         Vectorizer,
         Encoder,
-        is_dataframe=True,
-    )
-    # Combina as características da roupa escolhida em uma única matriz
-    chosen_product_matrix = combine_features(
-        vectorized_product_title,
-        scaled_product_features,
-        encoded_product_color,
-        Vectorizer,
-        Encoder,
-        is_dict=True,
     )
 
-    # Calcula a similaridade de cossenos entre a roupa escolhida e todas as roupas do DataFrame
-    similarity = calculate_cosine_similarity(df_feature_matrix, chosen_product_matrix)
+    # Calcula a similaridade de cossenos entre o produto escolhido e todas as roupas do DataFrame
+    similarity = calculate_cosine_similarity(df_features)
 
     # Cria um DataFrame com os títulos das roupas e suas respectivas similaridades
     df_similarity_clothes = pd.DataFrame(
         {"title": df_products["title"], "similarity": similarity}
-    )
-
-    # Ordena as roupas com base na similaridade em ordem decrescente
-    df_similarity_clothes = df_similarity_clothes.sort_values(
-        by="similarity", ascending=False
     )
 
     return df_similarity_clothes

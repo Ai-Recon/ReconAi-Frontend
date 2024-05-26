@@ -34,3 +34,11 @@ def convert_json_to_df(json):
     """
     df = pd.DataFrame(json)
     return df
+
+
+def convert_dict_to_df(dict):
+    """
+    Converte os dados de um dicionário para um DataFrame
+    """
+    df = pd.DataFrame([dict])
+    return df

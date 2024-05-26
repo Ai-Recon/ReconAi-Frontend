@@ -49,7 +49,7 @@ def produto():
     imagem = request.args.get("imagem")
 
     # Cria um dicionário contendo as informações da roupa escolhida
-    chosen_product = {
+    dict_chosen_product = {
         "ID": ID,
         "title": title,
         "color": color,
@@ -58,7 +58,7 @@ def produto():
     }
 
     # Obtém as recomendações de produtos com base na roupa escolhida
-    recommendations = get_recommendations(chosen_product)
+    recommendations = get_recommendations(dict_chosen_product)
 
     # Renderiza a página HTML passando os detalhes do produto e as novas recomendações
     return render_template(
