@@ -120,6 +120,11 @@ function renderizarItem(recommendation, recommendationsList) {
 
 // Função para redirecionar para a página do produto
 function redirecionarProduto(recommendation, imagemProd) {
+	const recommendationsList = document.getElementById("recomendacoes");
+	recommendationsList.innerHTML = "";
+	const loading = document.getElementById("loading");
+	loading.style.visibility = "visible";
+
 	const queryString = new URLSearchParams({
 		id: recommendation.id,
 		title: recommendation.title,
@@ -134,6 +139,7 @@ function redirecionarProduto(recommendation, imagemProd) {
 // Função para gerar recomendações
 function gerarRecomendacoes() {
 	const recommendationsList = document.getElementById("recomendacoes");
+	recommendationsList.innerHTML = "";
 
 	const loading = document.getElementById("loading");
 	loading.style.visibility = "visible";
@@ -167,6 +173,7 @@ function gerarRecomendacoes() {
 // Função para renderizar todas as recomendações
 function renderizarRecomendacoes(recommendations) {
 	const recommendationsList = document.getElementById("recomendacoes");
+	recommendationsList.innerHTML = "";
 
 	if (recommendations.length === 0) {
 		const noProductsMessage = document.createElement("div");
