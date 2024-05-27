@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				.recommendations
 		);
 		try {
-			renderizarRecomendacoes(recommendationsData.slice(0, 50));
+			renderizarRecomendacoes(recommendationsData.slice(0, 100));
 		} catch (error) {
 			console.log("Error:", error);
 		}
